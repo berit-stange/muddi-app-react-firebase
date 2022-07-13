@@ -69,7 +69,7 @@ const BloodPressureInput = () => {
         <div>
 
             <div>
-                <h2 className="blood-pressure-title">Blutdruck</h2>
+                <h2 className="blood-pressure-title">Gewicht & Größe</h2>
                 <div className="blood-pressure-input-box">
 
                     <div className="blood-pressure-input">

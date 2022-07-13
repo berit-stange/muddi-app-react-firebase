@@ -23,10 +23,10 @@ function Navigation() {
 
                 <ul>
                     <Link to="/blood-pressure">
-                        <li>Blutdruck</li>
+                        <li>Gewicht</li>
                     </Link>
                     <Link to="/medication">
-                        <li>Medikamente</li>
+                        <li>Mahlzeit</li>
                     </Link>
                     <Link to="/settings">
                         <span className="material-icons-round">settings</span>

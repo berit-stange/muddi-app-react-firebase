@@ -65,7 +65,7 @@ const BloodPressureContainer = () => {
 
     return (
         <div className="blood-pressure-input-box">
-            <h2>Blutdruck hinzufügen</h2>
+            <h2>Gewicht hinzufügen</h2>
             <div className="blood-pressure-input">
                 <div className="blood-pressure-values">
                     <input

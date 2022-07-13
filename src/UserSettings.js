@@ -60,10 +60,10 @@ const UserSettings = () => {
 
         <div className="blood-pressure-input-box">
             <div className="blood-pressure-input">
-                <h2>Medikament hinzufügen</h2>
+                <h2>Element hinzufügen</h2>
                 <div className="blood-pressure-comment">
                     <input
-                        placeholder="Medikament"
+                        placeholder="..."
                         value={title}
                         onChange={(event) => {
                             setElementTitle(event.target.value);

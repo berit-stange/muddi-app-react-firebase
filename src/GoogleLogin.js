@@ -42,8 +42,8 @@ const GoogleLogin = () => {
 
     return (
         <div>
-            <center>
-                <h1>Medi App</h1>
+            <center className="login-screen">
+                <h1>Muddi App</h1>
 
                 <button className="btn-login"
                     onClick={signin}>
