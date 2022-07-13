@@ -2,10 +2,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@200;300;400;600;700&display=swap");
 
 
-$base-color: #F4F3F1;
-$dark-color: #27336b;
-$accent-color: #80ecda;
-$accent-color-op: #80ecda86;
+$base-color: #f5f5f5;
+$dark-color: #165d7e;
+$accent-color: #e4b4bc;
+$accent-color-op: #c492ab70;
 $font-sans: 'Montserrat',
 sans-serif;
 $font-serif: 'Roboto Slab',
@@ -313,10 +313,19 @@ button {
 //     margin: 0;
 // }
 
+.login-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
 .btn-login {
-    height: 10em;
-    width: 10em;
+    height: 50vw;
+    width: 50vw;
     margin: 1em;
+    font-weight: 600;
     background-color: $accent-color;
 }
 
