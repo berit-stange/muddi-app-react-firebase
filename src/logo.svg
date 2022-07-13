@@ -3,15 +3,15 @@
 <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:#80ECDA;}
-	.st1{fill:#27336B;}
+	.st0{fill:#E4B4BC;}
+	.st1{fill:none;}
+	.st2{fill:#165D7E;}
+	.st3{font-family:'RobotoSlab-SemiBold';}
+	.st4{font-size:300px;}
 </style>
 <g>
-	<rect y="0" class="st0" width="512" height="512"/>
+	<rect x="-47" y="-41" class="st0" width="600" height="579"/>
 </g>
-<g>
-	<path class="st1" d="M122.3,357.1v-22.8l21.7-4.2V182l-21.7-4.2v-22.9h21.7h55.1l57.2,143.6h0.8l55.4-143.6h77.2v22.9l-21.8,4.2
-		v148.2l21.8,4.2v22.8h-81.4v-22.8l22.9-4.2v-42.9l0.6-89.9l-0.7-0.1l-61.7,156.1h-27.9l-63.2-155.1l-0.8,0.1l2.2,85.6v46.2
-		l23.9,4.2v22.8H122.3z"/>
-</g>
+<rect x="105.8" y="127.1" class="st1" width="300.2" height="242.9"/>
+<text transform="matrix(1 0 0 1 105.7788 355.5684)" class="st2 st3 st4">M</text>
 </svg>
