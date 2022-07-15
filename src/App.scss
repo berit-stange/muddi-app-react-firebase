@@ -319,14 +319,21 @@ button {
     justify-content: center;
     align-items: center;
     height: 100vh;
+
+    h1 {
+        font-size: 2em;
+    }
 }
 
 .btn-login {
     height: 50vw;
     width: 50vw;
+    max-height: 400px;
+    max-width: 400px;
     margin: 1em;
     font-weight: 600;
     background-color: $accent-color;
+    font-size: 1.5em;
 }
 
 .search-box {
