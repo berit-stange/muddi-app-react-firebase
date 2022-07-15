@@ -1,6 +1,6 @@
 {
-  "short_name": "Medi App",
-  "name": "Medi App",
+  "short_name": "Muddi App",
+  "name": "Muddi App",
   "icons": [
     {
       "src": "favicon.ico",
@@ -23,6 +23,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#27336b",
-  "background_color": "#80ecda"
+  "theme_color": "#e4b4bc",
+  "background_color": "#f5f5f5"
 }
