@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect, useRef } from "react";
 import { auth } from './firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 import { db } from "./firebase-config";
 
@@ -50,6 +50,11 @@ const MedicationList = () => {
         const medicationDoc = doc(db, "medication", id);
         await deleteDoc(medicationDoc);
     };
+
+    // function showModal() {
+    //     var answer = document.getElementById("modal");
+    //     answer.classList.toggle("show-modal");
+    // }
 
     useEffect(() => {
         const q = query(settingsCollectionRef.current, where("uid", "==", user.uid));
@@ -116,24 +121,33 @@ const MedicationList = () => {
                     // .filter((val) => { return (val.title.toLowerCase().includes(searchTerm.toLowerCase())) })
                     .map((medication) => {
                         return (
-                            <div className="medi-list-item" key={medication.id}>
-                                <div>
-                                    <p>{medication.time.toString()} - {medication.title} - {medication.comment}</p>
+                            <div key={medication.id}>
+                                <div className="medi-list-item">
+                                    <div>
+                                        <p>{medication.time.toString()} - {medication.title} - {medication.comment}</p>
+                                    </div>
+
+                                    <div className="btn-box btn-med-delete">
+                                        {/* <Link to="/medi-settings">
+                                        <span className="material-icons-round">settings</span>
+                                    </Link> */}
+
+                                        {/* <button onClick="showModal()">
+                                            <span className="material-icons-round">settings</span>
+                                        </button> */}
+
+                                        <button onClick={() => { deleteMedication(medication.id); }} >
+                                            <span className="material-icons-round">
+                                                delete
+                                            </span>
+                                        </button>
+                                    </div>
                                 </div>
 
-                                <div className="btn-box btn-med-delete">
-                                    <Link to="/medi-settings">
-                                        <span className="material-icons-round">settings</span>
-                                    </Link>
-                                    {/* <button>
-                                        <span className="material-icons-round">settings</span>
-                                    </button> */}
-                                    <button onClick={() => { deleteMedication(medication.id); }} >
-                                        <span className="material-icons-round">
-                                            delete
-                                        </span>
-                                    </button>
-                                </div>
+                                {/* <div className="modal-wrap" id="modal">
+                                    <p>{medication.id}</p>
+                                </div> */}
+
                             </div>
                         );
                     })

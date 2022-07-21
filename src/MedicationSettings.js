@@ -113,8 +113,8 @@ const MedicationSettings = () => {
                                             update
                                         </span>
                                     </button>
-
                                 </div>
+
                             </div>
                         );
                     })
