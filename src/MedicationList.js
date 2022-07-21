@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect, useRef } from "react";
 import { auth } from './firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { Link } from 'react-router-dom';
 
 import { db } from "./firebase-config";
 
@@ -22,7 +23,7 @@ const MedicationList = () => {
     const [user] = useAuthState(auth);
     const [medication, setMedication] = useState([]);
     const mediCollectionRef = useRef(collection(db, "medication"));
-    const [searchTerm, setSearchTerm] = useState("");
+    // const [searchTerm, setSearchTerm] = useState("");
 
     const [settings, setElements] = useState([]);
     const settingsCollectionRef = useRef(collection(db, "settings"));
@@ -101,18 +102,18 @@ const MedicationList = () => {
             <div className="medi-list">
                 <h2>Aufzeichnung</h2>
 
-                <div className="search-box">
+                {/* <div className="search-box">
                     <input
                         type="search-input"
                         placeholder="Suche"
                         onChange={(event) => { setSearchTerm(event.target.value); }}
                         aria-label="Suche" />
-                </div>
+                </div> */}
 
 
                 {medication
                     .sort((a, b) => a.timestamp > b.timestamp ? -1 : 1)
-                    .filter((val) => { return (val.title.toLowerCase().includes(searchTerm.toLowerCase())) })
+                    // .filter((val) => { return (val.title.toLowerCase().includes(searchTerm.toLowerCase())) })
                     .map((medication) => {
                         return (
                             <div className="medi-list-item" key={medication.id}>
@@ -121,6 +122,12 @@ const MedicationList = () => {
                                 </div>
 
                                 <div className="btn-box btn-med-delete">
+                                    <Link to="/medi-settings">
+                                        <span className="material-icons-round">settings</span>
+                                    </Link>
+                                    {/* <button>
+                                        <span className="material-icons-round">settings</span>
+                                    </button> */}
                                     <button onClick={() => { deleteMedication(medication.id); }} >
                                         <span className="material-icons-round">
                                             delete

@@ -6,6 +6,7 @@ import Navigation from './Navigation';
 import MedicationList from './MedicationList';
 import BloodPressureContainer from './BloodPressureContainer';
 import UserSettings from './UserSettings';
+import MedicationSettings from './MedicationSettings';
 
 import { auth } from './firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -34,6 +35,7 @@ function App() {
           <Route exact path="/medication" element={<MedicationList />} />
           <Route exact path="/blood-pressure" element={<BloodPressureContainer />} />
           <Route exact path="/settings" element={<UserSettings />} />
+          <Route exact path="/medi-settings" element={<MedicationSettings />} />
         </Routes>
       </BrowserRouter>
 
