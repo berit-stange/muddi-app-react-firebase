@@ -1,5 +1,6 @@
 # MUDDI APP
 Maternity App based on the code of my Medi App - track feeding, weight etc.
+Work in progress. Current task: update elements in list with updateDoc
 
 
 # HOSTING
