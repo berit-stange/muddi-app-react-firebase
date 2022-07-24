@@ -84,7 +84,7 @@ const MedicationSettings = () => {
 
         <div className="blood-pressure-input-box">
 
-            {/* map + includes oder filter oder so - wie bei movie list */}
+            {/* map + includes oder filter oder so - wie bei movie list? */}
             <div className="medi-list">
                 <h2>Medikamente aus DB bearbeiten</h2>
                 {medication
@@ -100,7 +100,7 @@ const MedicationSettings = () => {
                                 <div className="blood-pressure-values">
                                     <input
                                         placeholder={medication.title}
-                                        value={dbTitle} // wenn das da ist, erscheint die Eingabe in allen inputfeldern anders wenn mit Modal
+                                        // value={dbTitle} // wenn das da ist, erscheint die Eingabe in allen inputfeldern anders wenn mit Modal
                                         onChange={(event) => {
                                             updateElementTitle(event.target.value);
                                         }}

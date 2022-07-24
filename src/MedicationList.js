@@ -2,7 +2,8 @@ import React from 'react';
 import { useState, useEffect, useRef } from "react";
 import { auth } from './firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import MedicationSettings from './MedicationSettings';
 
 import { db } from "./firebase-config";
 
@@ -23,10 +24,10 @@ const MedicationList = () => {
     const [user] = useAuthState(auth);
     const [medication, setMedication] = useState([]);
     const mediCollectionRef = useRef(collection(db, "medication"));
-    // const [searchTerm, setSearchTerm] = useState("");
-
-    const [settings, setElements] = useState([]);
     const settingsCollectionRef = useRef(collection(db, "settings"));
+    // const [searchTerm, setSearchTerm] = useState("");
+    const [editActive, setEditActive] = useState("false");
+    const [settings, setElements] = useState([]);
 
 
     const addMedi = async (id, settings) => {
@@ -35,6 +36,7 @@ const MedicationList = () => {
         const settingsRef = doc(db, "settings", id);
 
         await addDoc(mediCollectionRef.current, {
+            // id: settings.id,
             title: settings.title,
             comment: settings.dose,
             unit: settings.unit,
@@ -53,8 +55,12 @@ const MedicationList = () => {
 
     // function showModal() {
     //     var answer = document.getElementById("modal");
-    //     answer.classList.toggle("show-modal");
+    //     answer.classList.toggle("hide");
     // }
+
+    const handleToggle = () => {
+        setEditActive(!editActive);
+    };
 
     useEffect(() => {
         const q = query(settingsCollectionRef.current, where("uid", "==", user.uid));
@@ -128,13 +134,22 @@ const MedicationList = () => {
                                     </div>
 
                                     <div className="btn-box btn-med-delete">
-                                        {/* <Link to="/medi-settings">
-                                        <span className="material-icons-round">settings</span>
-                                    </Link> */}
+                                        <Link to="/medi-settings">
+                                            <span className="material-icons-round">settings</span>
+                                        </Link>
 
-                                        {/* <button onClick="showModal()">
+                                        {/* <button onClick={handleToggle}>
                                             <span className="material-icons-round">settings</span>
                                         </button> */}
+                                        {/* <div className={editActive ? "hide" : null} id="modal">
+                                            <MedicationSettings />
+                                        </div> */}
+
+                                        {/* <button onClick={() => setEditActive(true)}>
+                                            <span className="material-icons-round">settings</span>
+                                        </button>
+                                        {editActive === true && <MedicationSettings key={medication.id} setEditActive={setEditActive} />} */}
+
 
                                         <button onClick={() => { deleteMedication(medication.id); }} >
                                             <span className="material-icons-round">
@@ -144,9 +159,9 @@ const MedicationList = () => {
                                     </div>
                                 </div>
 
-                                {/* <div className="modal-wrap" id="modal">
-                                    <p>{medication.id}</p>
-                                </div> */}
+                                {/* <div className="modal-wrap" id="modal"> */}
+
+
 
                             </div>
                         );

@@ -288,13 +288,12 @@ button {
   display: flex;
 }
 
-.modal-wrap {
+.modal {
   background-color: pink;
   border-radius: 1em;
   padding: 2em;
   width: 80vw;
   margin: 0 auto;
-  display: block;
 }
 
 .hide {
