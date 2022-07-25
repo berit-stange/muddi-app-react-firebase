@@ -23,7 +23,7 @@ const MedicationSettings = ({ medi }) => {
     const [user] = useAuthState(auth);
 
     // const [settings, setElements] = useState([]);
-    const [medication, setMedication] = useState([]);
+    // const [medication, setMedication] = useState([]);
     // const [comment, updateElementComment] = useState("");
     // const [time, updateElementTime] = useState("");
     // const [timestamp, updateElementTimestamp] = useState("");
@@ -34,7 +34,7 @@ const MedicationSettings = ({ medi }) => {
 
     // const [searchTerm, setSearchTerm] = useState("");
     // const [settings, setElements] = useState([]);
-    const mediCollectionRef = useRef(collection(db, "medication"));
+    // const mediCollectionRef = useRef(collection(db, "medication"));
     // const settingsCollectionRef = useRef(collection(db, "settings"));
 
 
