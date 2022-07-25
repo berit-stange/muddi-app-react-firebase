@@ -25,7 +25,7 @@ const MedicationSettings = ({ medi }) => {
     // const [settings, setElements] = useState([]);
     // const [medication, setMedication] = useState([]);
     // const [comment, updateElementComment] = useState("");
-    // const [time, updateElementTime] = useState("");
+    const [dbTime, updateElementTime] = useState("");
     // const [timestamp, updateElementTimestamp] = useState("");
     const [dbTitle, updateElementTitle] = useState("");
     // const [typeId, updateElementtypeId] = useState("");
@@ -42,7 +42,7 @@ const MedicationSettings = ({ medi }) => {
         const medicationDoc = doc(db, "medication", id);
         await updateDoc(medicationDoc, {
             // comment: comment,
-            // time: time,
+            time: dbTime,
             // timestamp: timestamp,
             title: dbTitle,
             // typeId: typeId,
@@ -67,9 +67,16 @@ const MedicationSettings = ({ medi }) => {
             <div className="blood-pressure-values">
                 <input
                     placeholder={medi.title}
-                    // value={dbTitle} // wenn das da ist, erscheint die Eingabe in allen inputfeldern anders wenn mit Modal
+                    value={dbTitle} // wenn das da ist, erscheint die Eingabe in allen inputfeldern anders wenn mit Modal
                     onChange={(event) => {
                         updateElementTitle(event.target.value);
+                    }}
+                />
+                <input
+                    placeholder={medi.time}
+                    value={dbTime} // wenn das da ist, erscheint die Eingabe in allen inputfeldern anders wenn mit Modal
+                    onChange={(event) => {
+                        updateElementTime(event.target.value);
                     }}
                 />
             </div>
