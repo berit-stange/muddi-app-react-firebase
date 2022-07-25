@@ -342,16 +342,18 @@ button {
 }
 
 .modal {
-    background-color: pink;
+    background-color: $dark-color;
     border-radius: 1em;
     padding: 2em;
     width: 80vw;
+    height: 60vw;
     margin: 0 auto;
-    // display: flex;
-    // flex-direction: column;
-    // align-self: center;
-    // position: absolute;
-    // top: 0;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+    position: absolute;
+    top: 10%;
     // display: block;
 }
 
