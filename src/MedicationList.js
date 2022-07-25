@@ -4,9 +4,9 @@ import { auth } from './firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import MedicationSettings from './MedicationSettings';
+import MedicationElement from './MedicationElement';
 
 import { db } from "./firebase-config";
-
 import {
     collection,
     getDocs,
@@ -128,36 +128,41 @@ const MedicationList = () => {
                     .map((medication) => {
                         return (
                             <div key={medication.id}>
-                                <div className="medi-list-item">
-                                    <div>
+                                {/* <div className="medi-list-item"> */}
+                                <MedicationElement medi={medication} />
+                                {/* <div>
                                         <p>{medication.time.toString()} - {medication.title} - {medication.comment}</p>
-                                    </div>
+                                    </div> */}
 
-                                    <div className="btn-box btn-med-delete">
-                                        <Link to="/medi-settings">
+                                {/* <div className="btn-box btn-med-delete"> */}
+                                {/* <Link to="/medi-settings">
                                             <span className="material-icons-round">settings</span>
-                                        </Link>
+                                        </Link> */}
 
-                                        {/* <button onClick={handleToggle}>
+
+
+                                {/* <button onClick={handleToggle}>
                                             <span className="material-icons-round">settings</span>
                                         </button> */}
-                                        {/* <div className={editActive ? "hide" : null} id="modal">
+                                {/* <div className={editActive ? "hide" : null} id="modal">
                                             <MedicationSettings />
                                         </div> */}
 
-                                        {/* <button onClick={() => setEditActive(true)}>
+                                {/* <button onClick={() => setEditActive(true)}>
                                             <span className="material-icons-round">settings</span>
                                         </button>
                                         {editActive === true && <MedicationSettings key={medication.id} setEditActive={setEditActive} />} */}
 
 
-                                        <button onClick={() => { deleteMedication(medication.id); }} >
+                                {/* <button onClick={() => { deleteMedication(medication.id); }} >
                                             <span className="material-icons-round">
                                                 delete
                                             </span>
-                                        </button>
-                                    </div>
-                                </div>
+                                        </button> */}
+
+
+                                {/* </div> */}
+                                {/* </div> */}
 
                                 {/* <div className="modal-wrap" id="modal"> */}
 
@@ -169,7 +174,6 @@ const MedicationList = () => {
                 }
             </div>
         </div>
-
 
     );
 }
