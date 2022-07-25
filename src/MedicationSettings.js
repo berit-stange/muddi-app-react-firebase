@@ -48,14 +48,14 @@ const MedicationSettings = ({ medi, setEditActive }) => {
         <div key={medi.id} className="blood-pressure-input-box">
             <div className="blood-pressure-values">
                 <input
-                    placeholder={medi.title}
+                    placeholder=/* {medi.title} */ "Titel"
                     value={dbTitle} // wenn das da ist, erscheint die Eingabe in allen inputfeldern anders wenn mit Modal
                     onChange={(event) => {
                         updateElementTitle(event.target.value);
                     }}
                 />
                 <input
-                    placeholder={medi.time}
+                    placeholder=/* {medi.time} */ "Datum, Zeit"
                     value={dbTime} // wenn das da ist, erscheint die Eingabe in allen inputfeldern anders wenn mit Modal
                     onChange={(event) => {
                         updateElementTime(event.target.value);
