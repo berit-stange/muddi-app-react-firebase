@@ -45,17 +45,28 @@ const MedicationSettings = ({ medi, setEditActive }) => {
 
     return (
 
-        <div key={medi.id} className="blood-pressure-input-box">
+        <div key={medi.id} className="blood-pressure-input-box modal">
+
+            <div>
+                <button onClick={() => {
+                    setEditActive(false);
+                }} >
+                    <span className="material-icons-round">
+                        close
+                    </span>
+                </button>
+            </div>
+
             <div className="blood-pressure-values">
                 <input
-                    placeholder=/* {medi.title} */ "Titel"
+                    placeholder={medi.title} /* "Titel" */
                     value={dbTitle} // wenn das da ist, erscheint die Eingabe in allen inputfeldern anders wenn mit Modal
                     onChange={(event) => {
                         updateElementTitle(event.target.value);
                     }}
                 />
                 <input
-                    placeholder=/* {medi.time} */ "Datum, Zeit"
+                    placeholder={medi.time} /* "Datum, Zeit" */
                     value={dbTime} // wenn das da ist, erscheint die Eingabe in allen inputfeldern anders wenn mit Modal
                     onChange={(event) => {
                         updateElementTime(event.target.value);
@@ -63,7 +74,7 @@ const MedicationSettings = ({ medi, setEditActive }) => {
                 />
             </div>
 
-            <div className="btn-box btn-med-delete">
+            <div className="">
                 <button onClick={(click) => {
                     updateMedication(click, medi.id);
                     setEditActive(false);
@@ -72,6 +83,8 @@ const MedicationSettings = ({ medi, setEditActive }) => {
                         update
                     </span>
                 </button>
+
+
             </div>
 
 
