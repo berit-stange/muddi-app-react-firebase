@@ -18,7 +18,7 @@ import {
 } from "firebase/firestore";
 
 
-const MedicationSettings = () => {
+const MedicationSettings = ({ medi }) => {
 
     const [user] = useAuthState(auth);
 
@@ -82,45 +82,44 @@ const MedicationSettings = () => {
 
     return (
 
-        <div className="blood-pressure-input-box">
+        <div key={medi.id} className="blood-pressure-input-box">
+            <div className="blood-pressure-values">
+                <input
+                    placeholder={medi.title}
+                    // value={dbTitle} // wenn das da ist, erscheint die Eingabe in allen inputfeldern anders wenn mit Modal
+                    onChange={(event) => {
+                        updateElementTitle(event.target.value);
+                    }}
+                />
+            </div>
+
+            <div className="btn-box btn-med-delete">
+                <button onClick={(click) => { updateMedication(click, medi.id); }} >
+                    <span className="material-icons-round">
+                        update
+                    </span>
+                </button>
+            </div>
+
 
             {/* map + includes oder filter oder so - wie bei movie list? */}
-            <div className="medi-list">
-                <h2>Medikamente aus DB bearbeiten</h2>
-                {medication
+
+            {/* <div className="medi-list">
+                <h2>Medikament aus DB bearbeiten</h2>
+                {medi
                     .sort((a, b) => a.timestamp > b.timestamp ? -1 : 1)
-                    // .filter((val) => { return (val.title.toLowerCase().includes(searchTerm.toLowerCase())) })
-                    .map((medication) => {
+                    .map((medi) => {
                         return (
-                            <div className="medi-list-item" key={medication.id}>
+                            <div className="medi-list-item" key={medi.id}>
                                 <div>
-                                    <p>{medication.time.toString()} - {medication.title} - {medication.comment}</p>
+                                    <p>{medi.time.toString()} - {medi.title} - {medi.comment}</p>
                                 </div>
-
-                                <div className="blood-pressure-values">
-                                    <input
-                                        placeholder={medication.title}
-                                        // value={dbTitle} // wenn das da ist, erscheint die Eingabe in allen inputfeldern anders wenn mit Modal
-                                        onChange={(event) => {
-                                            updateElementTitle(event.target.value);
-                                        }}
-                                    />
-                                </div>
-
-                                <div className="btn-box btn-med-delete">
-                                    <button onClick={(click) => { updateMedication(click, medication.id); }} >
-                                        <span className="material-icons-round">
-                                            update
-                                        </span>
-                                    </button>
-                                </div>
-
                             </div>
                         );
                     })
                 }
 
-            </div>
+            </div> */}
 
         </div>
 
