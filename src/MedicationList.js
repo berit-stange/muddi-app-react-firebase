@@ -25,7 +25,7 @@ const MedicationList = () => {
     const [medication, setMedication] = useState([]);
     const mediCollectionRef = useRef(collection(db, "medication"));
     const settingsCollectionRef = useRef(collection(db, "settings"));
-    // const [searchTerm, setSearchTerm] = useState("");
+    const [searchTerm, setSearchTerm] = useState("");
     const [editActive, setEditActive] = useState("false");
     const [settings, setElements] = useState([]);
 
@@ -113,18 +113,18 @@ const MedicationList = () => {
             <div className="medi-list">
                 <h2>Aufzeichnung</h2>
 
-                {/* <div className="search-box">
+                <div className="search-box">
                     <input
                         type="search-input"
                         placeholder="Suche"
                         onChange={(event) => { setSearchTerm(event.target.value); }}
                         aria-label="Suche" />
-                </div> */}
+                </div>
 
 
                 {medication
                     .sort((a, b) => a.timestamp > b.timestamp ? -1 : 1)
-                    // .filter((val) => { return (val.title.toLowerCase().includes(searchTerm.toLowerCase())) })
+                    .filter((val) => { return (val.title.toLowerCase().includes(searchTerm.toLowerCase())) })
                     .map((medication) => {
                         return (
                             <div key={medication.id}>
