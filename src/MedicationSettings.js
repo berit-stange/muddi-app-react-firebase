@@ -1,29 +1,14 @@
 import React from 'react';
 import { useState, useEffect, useRef } from "react";
-import { auth } from './firebase';
-import { useAuthState } from 'react-firebase-hooks/auth';
-
 import { db } from "./firebase-config";
-
 import {
-    // addDoc,
-    // collection,
-    // deleteDoc,
     updateDoc,
-    doc,
-    // getDocs,
-    // onSnapshot,
-    // query,
-    // where
+    doc
 } from "firebase/firestore";
 
 
-const MedicationSettings = ({ medi }) => {
+const MedicationSettings = ({ medi, setEditActive }) => {
 
-    const [user] = useAuthState(auth);
-
-    // const [settings, setElements] = useState([]);
-    // const [medication, setMedication] = useState([]);
     // const [comment, updateElementComment] = useState("");
     const [dbTime, updateElementTime] = useState("");
     // const [timestamp, updateElementTimestamp] = useState("");
@@ -31,16 +16,13 @@ const MedicationSettings = ({ medi }) => {
     // const [typeId, updateElementtypeId] = useState("");
     // const [unit, updateElementUnit] = useState("");
     // const [dose, updateElementDose] = useState("");
-    // const [searchTerm, setSearchTerm] = useState("");
     // const [settings, setElements] = useState([]);
-    // const mediCollectionRef = useRef(collection(db, "medication"));
-    // const settingsCollectionRef = useRef(collection(db, "settings"));
 
 
-    const updateMedication = async (click, id) => {
-        click.preventDefault(); //e > referencing event listener onclick
+    const updateMedication = /* async */ (click, id) => {
+        click.preventDefault(); // referencing event listener onclick
         const medicationDoc = doc(db, "medication", id);
-        await updateDoc(medicationDoc, {
+        /* await */ updateDoc(medicationDoc, {
             // comment: comment,
             time: dbTime,
             // timestamp: timestamp,
@@ -50,7 +32,7 @@ const MedicationSettings = ({ medi }) => {
             // unit: unit
         });
         // updateElementComment("");
-        // updateElementTime("");
+        updateElementTime("");
         // updateElementTimestamp("");
         updateElementTitle("");
         // updateElementtypeId("");
@@ -82,7 +64,10 @@ const MedicationSettings = ({ medi }) => {
             </div>
 
             <div className="btn-box btn-med-delete">
-                <button onClick={(click) => { updateMedication(click, medi.id); }} >
+                <button onClick={(click) => {
+                    updateMedication(click, medi.id);
+                    setEditActive(false);
+                }} >
                     <span className="material-icons-round">
                         update
                     </span>
