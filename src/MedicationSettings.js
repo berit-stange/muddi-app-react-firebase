@@ -7,14 +7,14 @@ import { db } from "./firebase-config";
 
 import {
     // addDoc,
-    collection,
+    // collection,
     // deleteDoc,
     updateDoc,
     doc,
-    getDocs,
-    onSnapshot,
-    query,
-    where
+    // getDocs,
+    // onSnapshot,
+    // query,
+    // where
 } from "firebase/firestore";
 
 
@@ -31,7 +31,6 @@ const MedicationSettings = ({ medi }) => {
     // const [typeId, updateElementtypeId] = useState("");
     // const [unit, updateElementUnit] = useState("");
     // const [dose, updateElementDose] = useState("");
-
     // const [searchTerm, setSearchTerm] = useState("");
     // const [settings, setElements] = useState([]);
     // const mediCollectionRef = useRef(collection(db, "medication"));
@@ -59,25 +58,7 @@ const MedicationSettings = ({ medi }) => {
         // updateElementDose("");
     };
 
-    // useEffect(() => {
-    //     const q = query(settingsCollectionRef.current, where("uid", "==", user.uid));
-    //     const handleSnapshot = (snapshot) => {
-    //         setElements(snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })));
-    //     };
-    //     getDocs(q).then(handleSnapshot);
-    //     console.log("useEffect ok");
-    //     return onSnapshot(q, settingsCollectionRef.current, handleSnapshot)
-    // }, [user.uid, settingsCollectionRef]);
 
-    // useEffect(() => {
-    //     const q = query(mediCollectionRef.current, where("uid", "==", user.uid));
-    //     const handleSnapshot = (snapshot) => {
-    //         setMedication(snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })));
-    //     };
-    //     getDocs(q).then(handleSnapshot);
-    //     console.log("useEffect ok");
-    //     return onSnapshot(q, mediCollectionRef.current, handleSnapshot)
-    // }, [user.uid, mediCollectionRef]);
 
 
     return (
