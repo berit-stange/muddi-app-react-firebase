@@ -69,15 +69,15 @@ const MedicationSettings = ({ medi }) => {
     //     return onSnapshot(q, settingsCollectionRef.current, handleSnapshot)
     // }, [user.uid, settingsCollectionRef]);
 
-    useEffect(() => {
-        const q = query(mediCollectionRef.current, where("uid", "==", user.uid));
-        const handleSnapshot = (snapshot) => {
-            setMedication(snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })));
-        };
-        getDocs(q).then(handleSnapshot);
-        console.log("useEffect ok");
-        return onSnapshot(q, mediCollectionRef.current, handleSnapshot)
-    }, [user.uid, mediCollectionRef]);
+    // useEffect(() => {
+    //     const q = query(mediCollectionRef.current, where("uid", "==", user.uid));
+    //     const handleSnapshot = (snapshot) => {
+    //         setMedication(snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })));
+    //     };
+    //     getDocs(q).then(handleSnapshot);
+    //     console.log("useEffect ok");
+    //     return onSnapshot(q, mediCollectionRef.current, handleSnapshot)
+    // }, [user.uid, mediCollectionRef]);
 
 
     return (
@@ -101,25 +101,6 @@ const MedicationSettings = ({ medi }) => {
                 </button>
             </div>
 
-
-            {/* map + includes oder filter oder so - wie bei movie list? */}
-
-            {/* <div className="medi-list">
-                <h2>Medikament aus DB bearbeiten</h2>
-                {medi
-                    .sort((a, b) => a.timestamp > b.timestamp ? -1 : 1)
-                    .map((medi) => {
-                        return (
-                            <div className="medi-list-item" key={medi.id}>
-                                <div>
-                                    <p>{medi.time.toString()} - {medi.title} - {medi.comment}</p>
-                                </div>
-                            </div>
-                        );
-                    })
-                }
-
-            </div> */}
 
         </div>
 
