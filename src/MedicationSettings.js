@@ -14,8 +14,8 @@ const MedicationSettings = ({ medi, setEditActive }) => {
     // const [timestamp, updateElementTimestamp] = useState("");
     const [dbTitle, updateElementTitle] = useState("");
     // const [typeId, updateElementtypeId] = useState("");
-    // const [unit, updateElementUnit] = useState("");
-    // const [dose, updateElementDose] = useState("");
+    const [dbUnit, updateElementUnit] = useState("");
+    const [dbDose, updateElementDose] = useState("");
     // const [settings, setElements] = useState([]);
 
 
@@ -29,15 +29,16 @@ const MedicationSettings = ({ medi, setEditActive }) => {
             title: dbTitle,
             // typeId: typeId,
             // uid: user.uid,
-            // unit: unit
+            unit: dbUnit,
+            dose: dbDose
         });
         // updateElementComment("");
         updateElementTime("");
         // updateElementTimestamp("");
         updateElementTitle("");
         // updateElementtypeId("");
-        // updateElementUnit("");
-        // updateElementDose("");
+        updateElementUnit("");
+        updateElementDose("");
     };
 
 
@@ -72,13 +73,22 @@ const MedicationSettings = ({ medi, setEditActive }) => {
                     updateElementTime(event.target.value);
                 }}
             />
+            {/* <div> */}
             <input
-                placeholder={medi.time} /* "Datum, Zeit" */
-                value={dbTime} // wenn das da ist, erscheint die Eingabe in allen inputfeldern anders wenn mit Modal
+                placeholder={medi.dose} /* "Datum, Zeit" */
+                value={dbDose} // wenn das da ist, erscheint die Eingabe in allen inputfeldern anders wenn mit Modal
                 onChange={(event) => {
-                    updateElementTime(event.target.value);
+                    updateElementDose(event.target.value);
                 }}
             />
+            <input
+                placeholder={medi.unit} /* "Datum, Zeit" */
+                value={dbUnit} // wenn das da ist, erscheint die Eingabe in allen inputfeldern anders wenn mit Modal
+                onChange={(event) => {
+                    updateElementUnit(event.target.value);
+                }}
+            />
+            {/* </div> */}
 
 
             <div className="">

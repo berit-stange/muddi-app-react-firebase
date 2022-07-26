@@ -38,7 +38,8 @@ const MedicationList = () => {
         await addDoc(mediCollectionRef.current, {
             // id: settings.id,
             title: settings.title,
-            comment: settings.dose,
+            // comment: settings.comment,
+            dose: settings.dose,
             unit: settings.unit,
             time: dateDisplay,
             timestamp: dateSorting,
@@ -100,7 +101,7 @@ const MedicationList = () => {
                                 <button
                                     className="btn-add-dose"
                                     onClick={() => { addMedi(settings.id, settings); }}>
-                                    {settings.dose}
+                                    {settings.dose} {settings.unit}
                                 </button>
                             </div>
                         </div>

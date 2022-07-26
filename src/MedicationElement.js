@@ -21,7 +21,7 @@ const MedicationElement = ({ medi }) => {
     return (
         <div key={medi.id} className="medi-list-item">
             <div>
-                <p>{medi.time.toString()} - {medi.title} - {medi.comment}</p>
+                <p>{medi.time.toString()} - {medi.title} - {medi.dose} {medi.unit}</p>
             </div>
 
             <button onClick={() => { deleteMedication(medi.id); }} >
