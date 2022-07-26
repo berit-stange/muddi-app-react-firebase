@@ -45,34 +45,41 @@ const MedicationSettings = ({ medi, setEditActive }) => {
 
     return (
 
-        <div key={medi.id} className="blood-pressure-input-box modal">
+        <div key={medi.id} className="modal">
 
             <div>
-                <button onClick={() => {
-                    setEditActive(false);
-                }} >
+                <button className="modal-close"
+                    onClick={() => {
+                        setEditActive(false);
+                    }} >
                     <span className="material-icons-round">
                         close
                     </span>
                 </button>
             </div>
 
-            <div className="blood-pressure-values">
-                <input
-                    placeholder={medi.title} /* "Titel" */
-                    value={dbTitle} // wenn das da ist, erscheint die Eingabe in allen inputfeldern anders wenn mit Modal
-                    onChange={(event) => {
-                        updateElementTitle(event.target.value);
-                    }}
-                />
-                <input
-                    placeholder={medi.time} /* "Datum, Zeit" */
-                    value={dbTime} // wenn das da ist, erscheint die Eingabe in allen inputfeldern anders wenn mit Modal
-                    onChange={(event) => {
-                        updateElementTime(event.target.value);
-                    }}
-                />
-            </div>
+            <input
+                placeholder={medi.title} /* "Titel" */
+                value={dbTitle} // wenn das da ist, erscheint die Eingabe in allen inputfeldern anders wenn mit Modal
+                onChange={(event) => {
+                    updateElementTitle(event.target.value);
+                }}
+            />
+            <input
+                placeholder={medi.time} /* "Datum, Zeit" */
+                value={dbTime} // wenn das da ist, erscheint die Eingabe in allen inputfeldern anders wenn mit Modal
+                onChange={(event) => {
+                    updateElementTime(event.target.value);
+                }}
+            />
+            <input
+                placeholder={medi.time} /* "Datum, Zeit" */
+                value={dbTime} // wenn das da ist, erscheint die Eingabe in allen inputfeldern anders wenn mit Modal
+                onChange={(event) => {
+                    updateElementTime(event.target.value);
+                }}
+            />
+
 
             <div className="">
                 <button onClick={(click) => {
@@ -88,7 +95,7 @@ const MedicationSettings = ({ medi, setEditActive }) => {
             </div>
 
 
-        </div>
+        </div >
 
 
     );

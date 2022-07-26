@@ -346,15 +346,32 @@ button {
     border-radius: 1em;
     padding: 2em;
     width: 80vw;
-    height: 60vw;
+    height: 60vh;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    align-self: center;
-    justify-content: center;
+    // align-self: center;
+    // justify-content: center; //vertikal - bzw. in der flex-direction
+    justify-content: space-between;
     position: absolute;
     top: 10%;
-    // display: block;
+    left: 10%;
+
+    input {
+        height: 20px;
+    }
+
+    button {
+        width: 3em;
+        height: 3em;
+        background-color: $dark-color;
+        float: right;
+    }
+
+    .material-icons-round {
+        font-size: 3em;
+        color: $base-color;
+    }
 }
 
 .hide {
