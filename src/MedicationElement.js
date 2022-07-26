@@ -4,7 +4,7 @@ import { db } from './firebase-config';
 import {
     doc,
     deleteDoc,
-    updateDoc
+    // updateDoc
 } from 'firebase/firestore';
 import MedicationSettings from './MedicationSettings';
 

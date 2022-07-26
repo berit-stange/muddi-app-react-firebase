@@ -2,8 +2,8 @@ import React from 'react';
 import { useState, useEffect, useRef } from "react";
 import { auth } from './firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Link } from 'react-router-dom';
-import MedicationSettings from './MedicationSettings';
+// import { Link } from 'react-router-dom';
+// import MedicationSettings from './MedicationSettings';
 import MedicationElement from './MedicationElement';
 
 import { db } from "./firebase-config";
@@ -11,7 +11,7 @@ import {
     collection,
     getDocs,
     addDoc,
-    deleteDoc,
+    // deleteDoc,
     doc,
     onSnapshot,
     query,
@@ -26,7 +26,7 @@ const MedicationList = () => {
     const mediCollectionRef = useRef(collection(db, "medication"));
     const settingsCollectionRef = useRef(collection(db, "settings"));
     const [searchTerm, setSearchTerm] = useState("");
-    const [editActive, setEditActive] = useState("false");
+    // const [editActive, setEditActive] = useState("false");
     const [settings, setElements] = useState([]);
 
 
@@ -49,19 +49,19 @@ const MedicationList = () => {
     };
 
 
-    const deleteMedication = async (id) => {
-        const medicationDoc = doc(db, "medication", id);
-        await deleteDoc(medicationDoc);
-    };
+    // const deleteMedication = async (id) => {
+    //     const medicationDoc = doc(db, "medication", id);
+    //     await deleteDoc(medicationDoc);
+    // };
 
     // function showModal() {
     //     var answer = document.getElementById("modal");
     //     answer.classList.toggle("hide");
     // }
 
-    const handleToggle = () => {
-        setEditActive(!editActive);
-    };
+    // const handleToggle = () => {
+    //     setEditActive(!editActive);
+    // };
 
     useEffect(() => {
         const q = query(settingsCollectionRef.current, where("uid", "==", user.uid));
