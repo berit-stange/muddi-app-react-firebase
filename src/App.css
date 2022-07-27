@@ -199,10 +199,10 @@ button {
 .btn-add-dose {
   background-color: #165d7e;
   color: #e4b4bc;
-  font-size: 1rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  height: 3em;
-  width: 3em;
+  height: 4em;
+  width: 4em;
   margin: 0 0 0 0.5em;
   flex-grow: 1;
 }

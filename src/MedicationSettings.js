@@ -1,5 +1,6 @@
 import React from 'react';
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { db } from "./firebase-config";
 import {
     updateDoc,
@@ -10,38 +11,37 @@ import {
 const MedicationSettings = ({ medi, setEditActive }) => {
 
     // const [comment, updateElementComment] = useState("");
-    const [dbTime, updateElementTime] = useState("");
+    const [time, updateElementTime] = useState("");
     // const [timestamp, updateElementTimestamp] = useState("");
-    const [dbTitle, updateElementTitle] = useState("");
-    // const [typeId, updateElementtypeId] = useState("");
-    const [dbUnit, updateElementUnit] = useState("");
-    const [dbDose, updateElementDose] = useState("");
-    // const [settings, setElements] = useState([]);
-
+    const [title, updateElementTitle] = useState("");
+    const [unit, updateElementUnit] = useState("");
+    const [dose, updateElementDose] = useState("");
 
     const updateMedication = /* async */ (click, id) => {
-        click.preventDefault(); // referencing event listener onclick
+        // click.preventDefault(); // referencing event listener onclick
         const medicationDoc = doc(db, "medication", id);
         /* await */ updateDoc(medicationDoc, {
             // comment: comment,
-            time: dbTime,
+            time: time,
             // timestamp: timestamp,
-            title: dbTitle,
-            // typeId: typeId,
+            title: title,
             // uid: user.uid,
-            unit: dbUnit,
-            dose: dbDose
+            unit: unit,
+            dose: dose
         });
         // updateElementComment("");
         updateElementTime("");
         // updateElementTimestamp("");
         updateElementTitle("");
-        // updateElementtypeId("");
         updateElementUnit("");
         updateElementDose("");
+        setEditActive(false);
     };
 
-
+    // const { register, handleSubmit } = useForm();
+    const { register, handleSubmit } = useForm({
+        defaultValues: medi
+    });
 
 
     return (
@@ -59,49 +59,62 @@ const MedicationSettings = ({ medi, setEditActive }) => {
                 </button>
             </div>
 
-            <input
-                placeholder={medi.title} /* "Titel" */
-                value={dbTitle} // wenn das da ist, erscheint die Eingabe in allen inputfeldern anders wenn mit Modal
-                onChange={(event) => {
-                    updateElementTitle(event.target.value);
-                }}
-            />
-            <input
-                placeholder={medi.time} /* "Datum, Zeit" */
-                value={dbTime} // wenn das da ist, erscheint die Eingabe in allen inputfeldern anders wenn mit Modal
-                onChange={(event) => {
-                    updateElementTime(event.target.value);
-                }}
-            />
-            {/* <div> */}
-            <input
-                placeholder={medi.dose} /* "Datum, Zeit" */
-                value={dbDose} // wenn das da ist, erscheint die Eingabe in allen inputfeldern anders wenn mit Modal
-                onChange={(event) => {
-                    updateElementDose(event.target.value);
-                }}
-            />
-            <input
-                placeholder={medi.unit} /* "Datum, Zeit" */
-                value={dbUnit} // wenn das da ist, erscheint die Eingabe in allen inputfeldern anders wenn mit Modal
-                onChange={(event) => {
-                    updateElementUnit(event.target.value);
-                }}
-            />
-            {/* </div> */}
+            <form onSubmit={
+                handleSubmit((click) => {
+                    updateMedication(click, medi.id)
+                })
+            }>
+                <input
+                    // ref={register.title}
+                    {...register("title")}
+                    name="title"
+                    // defaultValue={medi.title}
+                    type="text"
+                    // value={title}
 
+                    onChange={(event) => {
+                        updateElementTitle(event.target.value);
+                    }}
+                />
+                <input
+                    // defaultValue={medi.time}
+                    placeholder={medi.time}
+                    type="text"
+                    value={time}
+                    onChange={(event) => {
+                        updateElementTime(event.target.value);
+                    }}
+                />
+                <input
+                    // defaultValue={medi.dose}
+                    type="text"
+                // value={dose}
+                // onChange={(event) => {
+                //     updateElementDose(event.target.value);
+                // }}
+                />
+                <input
+                    // defaultValue={medi.unit}
+                    type="text"
+                // value={unit}
+                // onChange={(event) => {
+                //     updateElementUnit(event.target.value);
+                // }}
+                />
+                <input type="submit" />
+            </form>
 
             <div className="">
-                <button onClick={(click) => {
-                    updateMedication(click, medi.id);
-                    setEditActive(false);
-                }} >
+                {/* <button
+                    onClick={(click) => {
+                        updateMedication(click, medi.id);
+                        setEditActive(false);
+                    }} >
+
                     <span className="material-icons-round">
                         update
                     </span>
-                </button>
-
-
+                </button> */}
             </div>
 
 
