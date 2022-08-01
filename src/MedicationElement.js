@@ -4,6 +4,7 @@ import { db } from './firebase-config';
 import {
     doc,
     deleteDoc,
+    getDocs
     // updateDoc
 } from 'firebase/firestore';
 import MedicationSettings from './MedicationSettings';
@@ -28,6 +29,25 @@ const MedicationElement = ({ medi }) => {
     };
 
 
+    const [time, updateElementTime] = useState("");
+    // const [title, updateElementTitle] = useState("");
+    const [unit, updateElementUnit] = useState("");
+    const [dose, updateElementDose] = useState("");
+    const storeMedication = async (id) => {
+        const medicationDoc = doc(db, "medication", id);
+        await getDocs(medicationDoc, {
+            time: time,
+            title: title,
+            unit: unit,
+            dose: dose
+        });
+        localStorage.setItem();
+        setEditActive(true);
+    };
+
+    // const selectElement = (id) => {
+    //     selectTitle(medi.title, id)
+    // };
 
     return (
         <div key={medi.id} className="medi-list-item">
@@ -42,7 +62,7 @@ const MedicationElement = ({ medi }) => {
             </button>
 
 
-            <button onClick={() => setEditActive(true)}>
+            <button onClick={() => /* setEditActive(true) */ storeMedication()}>
                 <span className="material-icons-round">settings</span>
             </button>
             {editActive === true && <MedicationSettings key={medi.id} medi={medi} setEditActive={setEditActive} />}
