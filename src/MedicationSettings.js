@@ -80,18 +80,18 @@ const MedicationSettings = ({ medi, setEditActive }) => {
                  } */}
 
             <input
-                // ref={register.title}
+                // ref={register.medi}
                 // {...register("title")}
-                // name="title"
-                defaultValue={medi.title}
+                title="title"
+                // defaultValue={medi.title}
                 type="text"
-                // value={title}
+                value={title}
                 onChange={(event) => { updateElementTitle(event.target.value); }} />
             <input
-                defaultValue={medi.time}
+                // defaultValue={medi.time}
                 // placeholder={medi.time}
                 type="text"
-                // value={time}
+                value={time}
                 onChange={(event) => { updateElementTime(event.target.value); }} />
             <input
                 // defaultValue={medi.dose}
