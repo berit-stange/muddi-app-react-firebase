@@ -1,53 +1,33 @@
 import React from "react";
-import { useState } from "react";
+import { useState/* , useEffect */ } from "react";
 import { db } from './firebase-config';
 import {
     doc,
     deleteDoc,
-    getDocs
+    // getDocs
     // updateDoc
 } from 'firebase/firestore';
 import MedicationSettings from './MedicationSettings';
-
-// function selectUser(id) {
-//     let item = users[id - 1];
-//     setTitle(item.name)
-//     setEmail(item.email)
-//     setMobile(item.mobile);
-//     setUserId(item.id)
-// }
 
 
 const MedicationElement = ({ medi }) => {
 
     const [editActive, setEditActive] = useState("false");
-    const [title, selectTitle] = useState("");
 
     const deleteMedication = async (id) => {
         const medicationDoc = doc(db, "medication", id);
         await deleteDoc(medicationDoc);
     };
 
-
-    const [time, updateElementTime] = useState("");
+    // const [time, updateElementTime] = useState("");
     // const [title, updateElementTitle] = useState("");
-    const [unit, updateElementUnit] = useState("");
-    const [dose, updateElementDose] = useState("");
-    const storeMedication = async (id) => {
-        const medicationDoc = doc(db, "medication", id);
-        await getDocs(medicationDoc, {
-            time: time,
-            title: title,
-            unit: unit,
-            dose: dose
-        });
-        localStorage.setItem();
-        setEditActive(true);
-    };
+    // const [unit, updateElementUnit] = useState("");
+    // const [dose, updateElementDose] = useState("");
 
-    // const selectElement = (id) => {
-    //     selectTitle(medi.title, id)
-    // };
+    const openModal = () => {
+        localStorage.setItem("medi", JSON.stringify(medi))
+        setEditActive(true);
+    }
 
     return (
         <div key={medi.id} className="medi-list-item">
@@ -61,20 +41,10 @@ const MedicationElement = ({ medi }) => {
                 </span>
             </button>
 
-
-            <button onClick={() => /* setEditActive(true) */ storeMedication()}>
+            <button onClick={() => /* setEditActive(true) */ openModal()} >
                 <span className="material-icons-round">settings</span>
             </button>
             {editActive === true && <MedicationSettings key={medi.id} medi={medi} setEditActive={setEditActive} />}
-
-            {/* <button onClick={() => {
-                selectElement(medi.id);
-                setEditActive(true);
-            }
-            }>
-                <span className="material-icons-round">settings</span>
-            </button>
-            {editActive === true && <MedicationSettings key={medi.id} medi={medi} setEditActive={setEditActive} />} */}
 
         </div>
 
