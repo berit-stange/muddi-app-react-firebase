@@ -1,11 +1,15 @@
 import React from 'react';
-import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useState, useEffect } from "react";
+// import { useForm } from "react-hook-form";
 import { db } from "./firebase-config";
 import {
     updateDoc,
     doc
 } from "firebase/firestore";
+
+
+
+
 
 
 const MedicationSettings = ({ medi, setEditActive }) => {
@@ -17,6 +21,33 @@ const MedicationSettings = ({ medi, setEditActive }) => {
     const [unit, updateElementUnit] = useState("");
     const [dose, updateElementDose] = useState("");
 
+    // useEffect(() => {
+    //     localStorage.setItem("medi", JSON.stringify(medi))
+    // }, [medi]);
+
+    // useEffect(() => {
+    //     localStorage.getItem("medi", JSON.parse(medi))
+    // }, [medi]);
+
+    const [values, setValues] = useState(getFormValues);
+
+    function getFormValues() {
+        const storedValues = localStorage.getItem("medi");
+        return JSON.parse(storedValues);
+
+    }
+    // updateElementTitle(values.title); //too m any re-renders, infinite loop
+    console.log(values);
+
+
+    // function handleChange(event) {
+    //     setValues((previousValues) => ({
+    //         ...previousValues,
+    //         [event.target.name]: event.target.value,
+    //     }))
+    // }
+
+
     const updateMedication = /* async */ (click, id) => {
         click.preventDefault(); // referencing event listener onclick
         const medicationDoc = doc(db, "medication", id);
@@ -24,10 +55,10 @@ const MedicationSettings = ({ medi, setEditActive }) => {
             // comment: comment,
             // timestamp: timestamp,
             // uid: user.uid,
-            time: time,
-            title: title,
-            unit: unit,
-            dose: dose
+            // time: values.time,
+            title: values.title, //speichert jetzt das aus dem local storage ab
+            // unit: unit,
+            // dose: dose
         });
         // updateElementComment("");
         // updateElementTimestamp("");
@@ -35,7 +66,7 @@ const MedicationSettings = ({ medi, setEditActive }) => {
         updateElementTitle("");
         updateElementUnit("");
         updateElementDose("");
-        setEditActive(false);
+        // setEditActive(false);
     };
 
     // const { register, handleSubmit } = useForm();
@@ -43,18 +74,6 @@ const MedicationSettings = ({ medi, setEditActive }) => {
     //     defaultValues: medi
     // });
 
-    // const selectElement = (id) => {
-    //     selectTitle(medi.title, id)
-    // };
-
-    //     function selectUser(id)
-    //   {
-    //     let item=users[id-1];
-    //     setName(item.name)
-    //     setEmail(item.email)
-    //     setMobile(item.mobile);
-    //     setUserId(item.id)
-    //   }
 
 
     return (
@@ -72,43 +91,28 @@ const MedicationSettings = ({ medi, setEditActive }) => {
                 </button>
             </div>
 
-
-            {/* onSubmit={
-                     handleSubmit((click) => {
-                         updateMedication(click, medi.id)
-                     })
-                 } */}
-
             <input
                 // ref={register.medi}
                 // {...register("title")}
-                title="title"
-                // defaultValue={medi.title}
+                // title="title"
+                defaultValue={values.title}
+                // placeholder={values.title}
                 type="text"
-                value={title}
-                onChange={(event) => { updateElementTitle(event.target.value); }} />
+                // value={title}
+                onChange={(event) => { updateElementTitle(event.target.value); }}
+            // value={values.title}
+            // onChange={handleChange}
+            />
             <input
-                // defaultValue={medi.time}
+                // defaultValue={values.time}
                 // placeholder={medi.time}
                 type="text"
-                value={time}
-                onChange={(event) => { updateElementTime(event.target.value); }} />
-            <input
-                // defaultValue={medi.dose}
-                type="text"
-            // value={dose}
-            // onChange={(event) => {
-            //     updateElementDose(event.target.value);
-            // }}
+            // value={time}
+            // onChange={(event) => { updateElementTime(event.target.value); }}
+            // value={values.time}
+            // onChange={handleChange}
             />
-            <input
-            // defaultValue={medi.unit}
-            // type="text"
-            // value={unit}
-            // onChange={(event) => {
-            //     updateElementUnit(event.target.value);
-            // }}
-            />
+
 
 
             <div className="">
