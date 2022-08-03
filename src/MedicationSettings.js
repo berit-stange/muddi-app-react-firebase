@@ -9,17 +9,39 @@ import {
 
 
 
-
-
-
-const MedicationSettings = ({ medi, setEditActive }) => {
+const MedicationSettings = ({ medi, setEditActive/* , setElementTitle */ }) => {
 
     // const [comment, updateElementComment] = useState("");
     // const [timestamp, updateElementTimestamp] = useState("");
-    const [time, updateElementTime] = useState("");
+    // const [time, updateElementTime] = useState("");
     const [title, updateElementTitle] = useState("");
-    const [unit, updateElementUnit] = useState("");
-    const [dose, updateElementDose] = useState("");
+    // const [unit, updateElementUnit] = useState("");
+    // const [dose, updateElementDose] = useState("");
+
+    const [mediX, setMedi] = useState({});
+    // const [timeSelected, setElementTime] = useState("");
+    const [setTitle, setElementTitle] = useState("");
+    // const [unitSelected, setElementUnit] = useState("");
+    // const [doseSelected, setElementDose] = useState("");
+
+    useEffect(() => {
+        selectX();
+    },
+        [setTitle]
+    );
+
+    function selectX() {
+        // let item=medi;
+        setElementTitle(medi.title);
+        console.log(setTitle + " selected");
+    }
+
+    // const selectMedi = () => {
+    // setMedi(mediX);
+    // console.log(mediX);
+    // setElementTitle(medi.title);
+    // console.log(titleSelected);
+    // }
 
     // useEffect(() => {
     //     localStorage.setItem("medi", JSON.stringify(medi))
@@ -29,50 +51,28 @@ const MedicationSettings = ({ medi, setEditActive }) => {
     //     localStorage.getItem("medi", JSON.parse(medi))
     // }, [medi]);
 
-    const [values, setValues] = useState(getFormValues);
-
-    function getFormValues() {
-        const storedValues = localStorage.getItem("medi");
-        return JSON.parse(storedValues);
-
-    }
-    // updateElementTitle(values.title); //too m any re-renders, infinite loop
-    console.log(values);
-
-
-    // function handleChange(event) {
-    //     setValues((previousValues) => ({
-    //         ...previousValues,
-    //         [event.target.name]: event.target.value,
-    //     }))
+    // ----------- selected medi in localstorage - sichern in db funktioniert so nicht
+    // const [values, setValues] = useState(getFormValues);
+    // function getFormValues() {
+    //     const storedValues = localStorage.getItem("medi");
+    //     return JSON.parse(storedValues);
     // }
+    // updateElementTitle(values.title); //too m any re-renders, infinite loop
+    // console.log(values);
 
 
     const updateMedication = /* async */ (click, id) => {
         click.preventDefault(); // referencing event listener onclick
         const medicationDoc = doc(db, "medication", id);
         /* await */ updateDoc(medicationDoc, {
-            // comment: comment,
-            // timestamp: timestamp,
-            // uid: user.uid,
             // time: values.time,
-            title: values.title, //speichert jetzt das aus dem local storage ab
-            // unit: unit,
-            // dose: dose
+            // title: values.title, //speichert jetzt das aus dem local storage ab
+            title: setTitle,
         });
-        // updateElementComment("");
-        // updateElementTimestamp("");
-        updateElementTime("");
+        // updateElementTime("");
         updateElementTitle("");
-        updateElementUnit("");
-        updateElementDose("");
-        // setEditActive(false);
+        setEditActive(false);
     };
-
-    // const { register, handleSubmit } = useForm();
-    // const { register, handleSubmit } = useForm({
-    //     defaultValues: medi
-    // });
 
 
 
@@ -92,26 +92,14 @@ const MedicationSettings = ({ medi, setEditActive }) => {
             </div>
 
             <input
-                // ref={register.medi}
-                // {...register("title")}
-                // title="title"
-                defaultValue={values.title}
+                // defaultValue={values.title}
                 // placeholder={values.title}
                 type="text"
-                // value={title}
-                onChange={(event) => { updateElementTitle(event.target.value); }}
-            // value={values.title}
-            // onChange={handleChange}
+                value={setTitle}
+                // onChange={(event) => { updateElementTitle(event.target.value); }}
+                onChange={(event) => { updateElementTitle(event.target.value) }}
             />
-            <input
-                // defaultValue={values.time}
-                // placeholder={medi.time}
-                type="text"
-            // value={time}
-            // onChange={(event) => { updateElementTime(event.target.value); }}
-            // value={values.time}
-            // onChange={handleChange}
-            />
+            {/* <input /> */}
 
 
 
@@ -120,7 +108,9 @@ const MedicationSettings = ({ medi, setEditActive }) => {
                     onClick={(click) => {
                         updateMedication(click, medi.id);
                         setEditActive(false);
-                    }} >
+                    }}
+                // onClick={updateMedication} 
+                >
 
                     <span className="material-icons-round">
                         update

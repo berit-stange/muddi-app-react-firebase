@@ -12,21 +12,33 @@ import MedicationSettings from './MedicationSettings';
 
 const MedicationElement = ({ medi }) => {
 
-    const [editActive, setEditActive] = useState("false");
+    const [editActive, setEditActive] = useState("false"); // open + close Modal
+
+    // const [time, setElementTime] = useState("");
+    // const [title, setElementTitle] = useState("");
+    // const [unit, setElementUnit] = useState("");
+    // const [dose, setElementDose] = useState("");
 
     const deleteMedication = async (id) => {
         const medicationDoc = doc(db, "medication", id);
         await deleteDoc(medicationDoc);
     };
 
-    // const [time, updateElementTime] = useState("");
-    // const [title, updateElementTitle] = useState("");
-    // const [unit, updateElementUnit] = useState("");
-    // const [dose, updateElementDose] = useState("");
+    // const getMedi = (id) => {
+    //     const mediDoc = doc(db, "medication", id);
 
-    const openModal = () => {
-        localStorage.setItem("medi", JSON.stringify(medi))
+    // }
+
+    // const openModal = () => {
+    //     localStorage.setItem("medi", JSON.stringify(medi))
+    //     setEditActive(true);
+    // }
+
+    const selectMedi = () => {
+        // localStorage.setItem("medi", JSON.stringify(medi))
         setEditActive(true);
+        // setElementTitle();
+        // console.log(medi.title);
     }
 
     return (
@@ -41,14 +53,18 @@ const MedicationElement = ({ medi }) => {
                 </span>
             </button>
 
-            <button onClick={() => /* setEditActive(true) */ openModal()} >
+            {/* setEditActive(true)  */}
+            {/* <button onClick={() => openModal()} >
                 <span className="material-icons-round">settings</span>
             </button>
-            {editActive === true && <MedicationSettings key={medi.id} medi={medi} setEditActive={setEditActive} />}
+            {editActive === true && <MedicationSettings key={medi.id} medi={medi} setEditActive={setEditActive} />} */}
+
+            <button onClick={() => selectMedi()} >
+                <span className="material-icons-round">settings</span>
+            </button>
+            {editActive === true && <MedicationSettings key={medi.id} medi={medi} setEditActive={setEditActive} /* setElementTitle={setElementTitle} */ />}
 
         </div>
-
-
     );
 
 }
