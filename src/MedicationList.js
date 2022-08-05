@@ -131,6 +131,7 @@ const MedicationList = () => {
                 </div>
 
 
+
                 {medication
                     .sort((a, b) => a.timestamp > b.timestamp ? -1 : 1)
                     .filter((val) => { return (val.title.toLowerCase().includes(searchTerm.toLowerCase())) })
