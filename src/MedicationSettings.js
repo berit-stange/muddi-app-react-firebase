@@ -1,78 +1,47 @@
 import React from 'react';
-import { useState, useEffect } from "react";
-// import { useForm } from "react-hook-form";
+import { /* useState, */ useEffect/* , useRef */ } from "react";
+// import { auth } from './firebase';
+// import { useAuthState } from 'react-firebase-hooks/auth';
 import { db } from "./firebase-config";
 import {
     updateDoc,
-    doc
+    // getDoc,
+    doc,
+    // collection,
+    // getDoc,
+    // getDocs,
+    // addDoc,
+    // deleteDoc,
+    // doc,
+    // onSnapshot,
+    // query,
+    // where
 } from "firebase/firestore";
 
 
 
-const MedicationSettings = ({ medi, setEditActive/* , setElementTitle */ }) => {
+const MedicationSettings = ({ medi, setEditActive, setElementTitle, title, setElementTime, time }) => {
 
-    // const [comment, updateElementComment] = useState("");
-    // const [timestamp, updateElementTimestamp] = useState("");
-    // const [time, updateElementTime] = useState("");
-    const [title, updateElementTitle] = useState("");
-    // const [unit, updateElementUnit] = useState("");
-    // const [dose, updateElementDose] = useState("");
-
-    const [mediX, setMedi] = useState({});
-    // const [timeSelected, setElementTime] = useState("");
-    const [setTitle, setElementTitle] = useState("");
-    // const [unitSelected, setElementUnit] = useState("");
-    // const [doseSelected, setElementDose] = useState("");
-
-    useEffect(() => {
-        selectX();
-    },
-        [setTitle]
-    );
-
-    function selectX() {
-        // let item=medi;
-        setElementTitle(medi.title);
-        console.log(setTitle + " selected");
-    }
-
-    // const selectMedi = () => {
-    // setMedi(mediX);
-    // console.log(mediX);
-    // setElementTitle(medi.title);
-    // console.log(titleSelected);
-    // }
-
-    // useEffect(() => {
-    //     localStorage.setItem("medi", JSON.stringify(medi))
-    // }, [medi]);
-
-    // useEffect(() => {
-    //     localStorage.getItem("medi", JSON.parse(medi))
-    // }, [medi]);
-
-    // ----------- selected medi in localstorage - sichern in db funktioniert so nicht
-    // const [values, setValues] = useState(getFormValues);
-    // function getFormValues() {
-    //     const storedValues = localStorage.getItem("medi");
-    //     return JSON.parse(storedValues);
-    // }
-    // updateElementTitle(values.title); //too m any re-renders, infinite loop
-    // console.log(values);
-
-
-    const updateMedication = /* async */ (click, id) => {
-        click.preventDefault(); // referencing event listener onclick
+    const updateMedication = async (click, id) => {
+        click.preventDefault();
         const medicationDoc = doc(db, "medication", id);
-        /* await */ updateDoc(medicationDoc, {
-            // time: values.time,
-            // title: values.title, //speichert jetzt das aus dem local storage ab
-            title: setTitle,
+        await updateDoc(medicationDoc, {
+            // time: time,
+            title: title
         });
-        // updateElementTime("");
-        updateElementTitle("");
+        setElementTitle(title);
         setEditActive(false);
     };
+
+    useEffect(() => {
+        const item = medi;
+        // const item = doc(db, "medication", id);
+        setElementTitle(item.title);
+        // setElementTitle(title);
+        console.log("useEffect in MedicationSettings: --- " + item.title);
+    },
+        []
+    );
 
 
 
@@ -92,24 +61,24 @@ const MedicationSettings = ({ medi, setEditActive/* , setElementTitle */ }) => {
             </div>
 
             <input
-                // defaultValue={values.title}
-                // placeholder={values.title}
                 type="text"
-                value={setTitle}
-                // onChange={(event) => { updateElementTitle(event.target.value); }}
-                onChange={(event) => { updateElementTitle(event.target.value) }}
+                // placeholder={medi.title}
+                value={title}
+                onChange={(event) => { setElementTitle(event.target.value) }}
             />
-            {/* <input /> */}
+            {/* <input
+                type="text"
+                value={time}
+                onChange={(event) => { setElementTime(event.target.value) }}
+            /> */}
 
 
 
-            <div className="">
+            <div >
                 <button
                     onClick={(click) => {
                         updateMedication(click, medi.id);
-                        setEditActive(false);
                     }}
-                // onClick={updateMedication} 
                 >
 
                     <span className="material-icons-round">
