@@ -9,6 +9,7 @@ import MedicationElement from './MedicationElement';
 import { db } from "./firebase-config";
 import {
     collection,
+    // getDoc,
     getDocs,
     addDoc,
     // deleteDoc,
@@ -24,9 +25,10 @@ const MedicationList = () => {
     const [user] = useAuthState(auth);
     const [medication, setMedication] = useState([]);
     const mediCollectionRef = useRef(collection(db, "medication"));
+
     const settingsCollectionRef = useRef(collection(db, "settings"));
     const [searchTerm, setSearchTerm] = useState("");
-    // const [editActive, setEditActive] = useState("false");
+    const [editActive, setEditActive] = useState("false");
     const [settings, setElements] = useState([]);
 
 
@@ -49,27 +51,13 @@ const MedicationList = () => {
     };
 
 
-    // const deleteMedication = async (id) => {
-    //     const medicationDoc = doc(db, "medication", id);
-    //     await deleteDoc(medicationDoc);
-    // };
-
-    // function showModal() {
-    //     var answer = document.getElementById("modal");
-    //     answer.classList.toggle("hide");
-    // }
-
-    // const handleToggle = () => {
-    //     setEditActive(!editActive);
-    // };
-
     useEffect(() => {
         const q = query(settingsCollectionRef.current, where("uid", "==", user.uid));
         const handleSnapshot = (snapshot) => {
             setElements(snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })));
         };
         getDocs(q).then(handleSnapshot);
-        console.log("useEffect ok");
+        console.log("get Settings ok");
         return onSnapshot(q, settingsCollectionRef.current, handleSnapshot)
     }, [user.uid, settingsCollectionRef]);
 
@@ -79,10 +67,30 @@ const MedicationList = () => {
         const handleSnapshot = (snapshot) => {
             setMedication(snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })));
         };
-        getDocs(q).then(handleSnapshot);
+        getDocs(q)
+            .then(handleSnapshot);
         console.log("useEffect ok");
         return onSnapshot(q, mediCollectionRef.current, handleSnapshot)
-    }, [user.uid, mediCollectionRef]);
+    }, [
+        user.uid,
+        mediCollectionRef
+    ]);
+
+    // useEffect(() => {
+    //     getMedis();
+    //     console.log("useEffect ok");
+    // }, [])
+
+    // function getMedis() {
+    //     const q = query(mediCollectionRef.current, where("uid", "==", user.uid));
+    //     const handleSnapshot = (snapshot) => {
+    //         setMedication(snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })));
+    //     };
+    //     getDocs(q)
+    //         .then(handleSnapshot);
+    //     console.log("get Medis ok");
+    //     return onSnapshot(q, mediCollectionRef.current, handleSnapshot)
+    // }
 
 
     return (
@@ -129,7 +137,15 @@ const MedicationList = () => {
                     .map((medication) => {
                         return (
                             <div key={medication.id}>
-                                <MedicationElement medi={medication} />
+                                <MedicationElement
+                                    medi={medication}
+                                    // deleteMedication={deleteMedication}
+                                    setEditActive={setEditActive}
+                                    editActive={editActive}
+                                // selectMedi={selectMedi}
+                                // id={medication.id}
+                                // title={medication.title}
+                                />
                             </div>
                         );
                     })
