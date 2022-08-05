@@ -5,14 +5,14 @@ import {
     doc,
     deleteDoc,
     // getDoc,
-    // updateDoc
+    updateDoc
 } from 'firebase/firestore';
 import MedicationSettings from './MedicationSettings';
 
 
 const MedicationElement = ({ medi, setEditActive, editActive }) => {
 
-
+    // const [id, setElementId] = useState("");
     const [time, setElementTime] = useState("");
     const [title, setElementTitle] = useState("");
     // const [unit, setElementUnit] = useState("");
@@ -27,11 +27,23 @@ const MedicationElement = ({ medi, setEditActive, editActive }) => {
         setEditActive(true);
         // const item = medi;
         // setElementTitle(item.title);
-        // setElementTime(item.time);
-        // console.log("selectMedi: " + item.title + " " + item.id);
+        setElementTime(medi.time);
         setElementTitle(medi.title);
+        // setElementId(medi.id);
         console.log("selectMedi: " + medi.title + " " + medi.id);
     }
+
+    const updateMedication = async (click, id) => {
+        click.preventDefault();
+        const medicationDoc = doc(db, "medication", id);
+        await updateDoc(medicationDoc, {
+            time: time,
+            title: title
+        });
+        setEditActive(false);
+        setElementTitle("");
+        setElementTime("");
+    };
 
 
     return (
@@ -47,11 +59,34 @@ const MedicationElement = ({ medi, setEditActive, editActive }) => {
             </button>
 
 
-            <button onClick={() => selectMedi()} >
+            <button onClick={() => selectMedi(medi.id)} >
                 <span className="material-icons-round">settings</span>
             </button>
-            {
-                editActive === true && <MedicationSettings
+
+
+
+            <div key={medi.id} className="">
+                <input type="text"
+                    value={title}
+                    onChange={(event) => { setElementTitle(event.target.value) }}
+                />
+                <input type="text"
+                    value={time}
+                    onChange={(event) => { setElementTime(event.target.value) }}
+                />
+                <div>
+                    <button onClick={(click) => { updateMedication(click, medi.id); }} >
+                        <span className="material-icons-round"> update </span>
+                    </button>
+                    <button onClick={() => { setEditActive(false); }} className="modal-close" >
+                        <span className="material-icons-round"> close </span>
+                    </button>
+                </div>
+            </div>
+
+            {/* {
+                editActive === true &&
+                <MedicationSettings
                     key={medi.id}
                     medi={medi}
                     setEditActive={setEditActive}
@@ -59,8 +94,10 @@ const MedicationElement = ({ medi, setEditActive, editActive }) => {
                     title={title}
                     setElementTime={setElementTime}
                     time={time}
+                    setElementId={setElementId}
+                    id={id}
                 />
-            }
+            } */}
 
         </div>
     );

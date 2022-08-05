@@ -8,7 +8,7 @@ import {
     // getDoc,
     doc,
     // collection,
-    // getDoc,
+    getDoc,
     // getDocs,
     // addDoc,
     // deleteDoc,
@@ -20,7 +20,7 @@ import {
 
 
 
-const MedicationSettings = ({ medi, setEditActive, setElementTitle, title, setElementTime, time }) => {
+const MedicationSettings = ({ medi, setEditActive, setElementTitle, title, setElementTime, time, setElementId, id }) => {
 
     const updateMedication = async (click, id) => {
         click.preventDefault();
@@ -29,16 +29,29 @@ const MedicationSettings = ({ medi, setEditActive, setElementTitle, title, setEl
             // time: time,
             title: title
         });
-        setElementTitle(title);
+        // setElementTitle("");
         setEditActive(false);
     };
 
+    const getMedication = /* async */ () => {
+        // preventDefault();
+        // const medicationDoc = doc(db, "medication", id);
+        // /* await */ getDoc(medicationDoc, {
+        //     // time: time,
+        //     title: title
+        // });
+        setElementTitle("");
+        // setEditActive(false);
+        console.log("getMedication" + title);
+    };
+
     useEffect(() => {
-        const item = medi;
+        // const item = medi;
         // const item = doc(db, "medication", id);
-        setElementTitle(item.title);
         // setElementTitle(title);
-        console.log("useEffect in MedicationSettings: --- " + item.title);
+        // setElementTitle(title);
+        // console.log("useEffect in MedicationSettings: --- " + setElementTitle(id));
+        getMedication();
     },
         []
     );
@@ -62,7 +75,7 @@ const MedicationSettings = ({ medi, setEditActive, setElementTitle, title, setEl
 
             <input
                 type="text"
-                // placeholder={medi.title}
+                placeholder={medi.title}
                 value={title}
                 onChange={(event) => { setElementTitle(event.target.value) }}
             />
