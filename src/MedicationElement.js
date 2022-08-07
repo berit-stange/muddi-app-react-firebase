@@ -7,30 +7,31 @@ import {
     // getDoc,
     updateDoc
 } from 'firebase/firestore';
-import MedicationSettings from './MedicationSettings';
+import MedicationModal from './MedicationModal';
 
 
-const MedicationElement = ({ medi, setEditActive, editActive }) => {
+const MedicationElement = ({ medi }) => {
 
-    // const [id, setElementId] = useState("");
+    const [editActive, setEditActive] = useState("false");
+    const [id, setElementId] = useState("");
     const [time, setElementTime] = useState("");
     const [title, setElementTitle] = useState("");
-    // const [unit, setElementUnit] = useState("");
-    // const [dose, setElementDose] = useState("");
+    const [unit, setElementUnit] = useState("");
+    const [dose, setElementDose] = useState("");
 
     const deleteMedication = async (id) => {
         const medicationDoc = doc(db, "medication", id);
         await deleteDoc(medicationDoc);
     };
 
-    const selectMedi = () => {
+    const selectMedi = (id) => {
         setEditActive(true);
-        // const item = medi;
-        // setElementTitle(item.title);
-        setElementTime(medi.time);
+        setElementId(medi.id);
         setElementTitle(medi.title);
-        // setElementId(medi.id);
-        console.log("selectMedi: " + medi.title + " " + medi.id);
+        setElementTime(medi.time);
+        setElementDose(medi.dose);
+        setElementUnit(medi.unit);
+        console.log("selectMedi: " + medi.title + " --- " + id);
     }
 
     const updateMedication = async (click, id) => {
@@ -38,34 +39,38 @@ const MedicationElement = ({ medi, setEditActive, editActive }) => {
         const medicationDoc = doc(db, "medication", id);
         await updateDoc(medicationDoc, {
             time: time,
-            title: title
+            title: title,
+            dose: dose,
+            unit: unit
         });
         setEditActive(false);
         setElementTitle("");
-        setElementTime("");
+        setElementId("");
     };
 
 
     return (
         <div key={medi.id} className="medi-list-item">
+
+
             <div>
-                <p>{medi.time.toString()} - {medi.title} - {medi.dose} {medi.unit}</p>
+                <p>{medi.time.toString()} - {medi.title} - {/* {medi.id} */} {medi.dose} {medi.unit}</p>
             </div>
 
-            <button onClick={() => { deleteMedication(medi.id); }} >
-                <span className="material-icons-round">
-                    delete
-                </span>
-            </button>
+            <div>
+                <button onClick={() => { deleteMedication(medi.id); }} >
+                    <span className="material-icons-round">
+                        delete
+                    </span>
+                </button>
+
+                <button onClick={() => selectMedi(medi.id)} >
+                    <span className="material-icons-round">settings</span>
+                </button>
+            </div>
 
 
-            <button onClick={() => selectMedi(medi.id)} >
-                <span className="material-icons-round">settings</span>
-            </button>
-
-
-
-            <div key={medi.id} className="">
+            {/* <div key={medi.id} className="update-input-box">
                 <input type="text"
                     value={title}
                     onChange={(event) => { setElementTitle(event.target.value) }}
@@ -82,12 +87,12 @@ const MedicationElement = ({ medi, setEditActive, editActive }) => {
                         <span className="material-icons-round"> close </span>
                     </button>
                 </div>
-            </div>
+            </div> */}
 
-            {/* {
+            {
                 editActive === true &&
-                <MedicationSettings
-                    key={medi.id}
+                <MedicationModal
+                    // key={medi.id}
                     medi={medi}
                     setEditActive={setEditActive}
                     setElementTitle={setElementTitle}
@@ -96,8 +101,13 @@ const MedicationElement = ({ medi, setEditActive, editActive }) => {
                     time={time}
                     setElementId={setElementId}
                     id={id}
+                    setElementDose={setElementDose}
+                    dose={dose}
+                    setElementUnit={setElementUnit}
+                    unit={unit}
+                    updateMedication={updateMedication}
                 />
-            } */}
+            }
 
         </div>
     );

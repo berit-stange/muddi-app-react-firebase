@@ -28,7 +28,7 @@ const MedicationList = () => {
 
     const settingsCollectionRef = useRef(collection(db, "settings"));
     const [searchTerm, setSearchTerm] = useState("");
-    const [editActive, setEditActive] = useState("false");
+    // const [editActive, setEditActive] = useState("false");
     const [settings, setElements] = useState([]);
 
 
@@ -76,21 +76,6 @@ const MedicationList = () => {
         mediCollectionRef
     ]);
 
-    // useEffect(() => {
-    //     getMedis();
-    //     console.log("useEffect ok");
-    // }, [])
-
-    // function getMedis() {
-    //     const q = query(mediCollectionRef.current, where("uid", "==", user.uid));
-    //     const handleSnapshot = (snapshot) => {
-    //         setMedication(snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })));
-    //     };
-    //     getDocs(q)
-    //         .then(handleSnapshot);
-    //     console.log("get Medis ok");
-    //     return onSnapshot(q, mediCollectionRef.current, handleSnapshot)
-    // }
 
 
     return (
@@ -137,15 +122,11 @@ const MedicationList = () => {
                     .filter((val) => { return (val.title.toLowerCase().includes(searchTerm.toLowerCase())) })
                     .map((medication) => {
                         return (
-                            <div key={medication.id}>
+                            <div key={medication.id}  >
                                 <MedicationElement
                                     medi={medication}
-                                    // deleteMedication={deleteMedication}
-                                    setEditActive={setEditActive}
-                                    editActive={editActive}
-                                // selectMedi={selectMedi}
-                                // id={medication.id}
-                                // title={medication.title}
+                                // setEditActive={setEditActive}
+                                // editActive={editActive}
                                 />
                             </div>
                         );
