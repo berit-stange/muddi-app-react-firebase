@@ -125,8 +125,6 @@ const MedicationList = () => {
                             <div key={medication.id}  >
                                 <MedicationElement
                                     medi={medication}
-                                // setEditActive={setEditActive}
-                                // editActive={editActive}
                                 />
                             </div>
                         );
