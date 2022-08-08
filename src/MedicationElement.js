@@ -56,7 +56,7 @@ const MedicationElement = ({ medi }) => {
                 <p>{medi.time.toString()} - {medi.title} - {/* {medi.id} */} {medi.dose} {medi.unit}</p>
             </div>
 
-            <div>
+            <div className="list-element-btn-box">
                 <button onClick={() => { deleteMedication(medi.id); }} >
                     <span className="material-icons-round">
                         delete

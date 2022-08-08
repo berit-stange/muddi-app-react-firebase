@@ -268,15 +268,14 @@ button {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    // align-items: center;
     font-weight: $font-regular;
-    padding: 1em;
-    margin: 0.5em;
+    padding: 1em 0 1em 0;
+    margin: 0.5em 0 0.5em 0;
     text-align: left;
 
-    // button {
-    //     float: right;
-    // }
+    .list-element-btn-box {
+        align-self: center;
+    }
 }
 
 .medi-title {
