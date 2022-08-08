@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MedicationModal = ({ medi, setEditActive, setElementTitle, title, setElementTime, time, id, setElementId, unit, setElementUnit, dose, setElementDose, updateMedication }) => {
+const MedicationModal = ({ medi, setEditActive, setElementTitle, title, setElementTime, time, /* id, setElementId, */ unit, setElementUnit, dose, setElementDose, updateMedication, deleteMedication }) => {
 
     return (
 
@@ -37,8 +37,13 @@ const MedicationModal = ({ medi, setEditActive, setElementTitle, title, setEleme
             />
 
             <div >
-                <button onClick={(click) => { updateMedication(click, medi.id); }}>
+                <button onClick={() => { deleteMedication(medi.id); }} >
+                    <span className="material-icons-round">
+                        delete
+                    </span>
+                </button>
 
+                <button onClick={(click) => { updateMedication(click, medi.id); }}>
                     <span className="material-icons-round">
                         update
                     </span>
