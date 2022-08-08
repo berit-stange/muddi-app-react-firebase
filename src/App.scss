@@ -345,17 +345,6 @@ button {
     display: flex;
 }
 
-// .update-input-box {
-//     display: flex;
-//     flex-direction: column;
-
-//     input {
-//         display: flex;
-//         width: 100%;
-//         flex-grow: 1;
-//     }
-// }
-
 .modal {
     background-color: $dark-color;
     border-radius: 1em;
@@ -366,9 +355,7 @@ button {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    // align-self: center;
-    // justify-content: center; //vertikal - bzw. in der flex-direction
-    justify-content: space-between;
+    justify-content: space-between; //vertikal - bzw. in der flex-direction
     position: absolute;
     top: 10%;
     left: 5%;
@@ -382,6 +369,14 @@ button {
         height: 3em;
         background-color: $dark-color;
         float: right;
+        // display: block;
+    }
+
+    .modal-btn-box {
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+        justify-content: space-between;
     }
 
     .material-icons-round {

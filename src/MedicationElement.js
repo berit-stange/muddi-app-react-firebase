@@ -23,14 +23,14 @@ const MedicationElement = ({ medi }) => {
         await deleteDoc(medicationDoc);
     };
 
-    const selectMedi = (id) => {
+    const selectMedi = () => {
         setEditActive(true);
         setElementId(medi.id);
         setElementTitle(medi.title);
         setElementTime(medi.time);
         setElementDose(medi.dose);
         setElementUnit(medi.unit);
-        console.log("selectMedi: " + medi.title + " --- " + id);
+        // console.log("selectMedi: " + medi.title + " --- " + id);
     }
 
     const updateMedication = async (click, id) => {
@@ -57,13 +57,13 @@ const MedicationElement = ({ medi }) => {
             </div>
 
             <div className="list-element-btn-box">
-                <button onClick={() => { deleteMedication(medi.id); }} >
+                {/* <button onClick={() => { deleteMedication(medi.id); }} >
                     <span className="material-icons-round">
                         delete
                     </span>
-                </button>
+                </button> */}
 
-                <button onClick={() => selectMedi(medi.id)} >
+                <button onClick={() => selectMedi()} >
                     <span className="material-icons-round">settings</span>
                 </button>
             </div>
@@ -87,6 +87,7 @@ const MedicationElement = ({ medi }) => {
                     setElementUnit={setElementUnit}
                     unit={unit}
                     updateMedication={updateMedication}
+                    deleteMedication={deleteMedication}
                 />
             }
 
