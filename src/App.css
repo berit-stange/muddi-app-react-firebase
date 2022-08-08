@@ -313,6 +313,7 @@ button {
   width: 3em;
   height: 3em;
   background-color: #165d7e;
+  float: right;
 }
 .modal .modal-btn-box {
   display: flex;
