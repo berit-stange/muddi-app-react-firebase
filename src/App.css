@@ -227,8 +227,11 @@ button {
   justify-content: space-between;
   font-weight: 400;
   padding: 1em 0 1em 0;
-  margin: 0.5em;
+  margin: 0.5em 0 0.5em 0;
   text-align: left;
+}
+.medi-list-item .list-element-btn-box {
+  align-self: center;
 }
 
 .medi-title {
