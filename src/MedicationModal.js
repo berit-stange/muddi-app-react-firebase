@@ -36,18 +36,21 @@ const MedicationModal = ({ medi, setEditActive, setElementTitle, title, setEleme
                 onChange={(event) => { setElementUnit(event.target.value) }}
             />
 
-            <div >
-                <button onClick={() => { deleteMedication(medi.id); }} >
-                    <span className="material-icons-round">
-                        delete
-                    </span>
-                </button>
-
-                <button onClick={(click) => { updateMedication(click, medi.id); }}>
-                    <span className="material-icons-round">
-                        update
-                    </span>
-                </button>
+            <div className="modal-btn-box">
+                <div>
+                    <button onClick={() => { deleteMedication(medi.id); }} >
+                        <span className="material-icons-round">
+                            delete
+                        </span>
+                    </button>
+                </div>
+                <div>
+                    <button onClick={(click) => { updateMedication(click, medi.id); }}>
+                        <span className="material-icons-round">
+                            update
+                        </span>
+                    </button>
+                </div>
             </div>
 
         </div >
