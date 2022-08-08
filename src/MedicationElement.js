@@ -1,10 +1,9 @@
 import React from "react";
-import { useState/* , useEffect */ } from "react";
+import { useState } from "react";
 import { db } from './firebase-config';
 import {
     doc,
     deleteDoc,
-    // getDoc,
     updateDoc
 } from 'firebase/firestore';
 import MedicationModal from './MedicationModal';
@@ -70,24 +69,6 @@ const MedicationElement = ({ medi }) => {
             </div>
 
 
-            {/* <div key={medi.id} className="update-input-box">
-                <input type="text"
-                    value={title}
-                    onChange={(event) => { setElementTitle(event.target.value) }}
-                />
-                <input type="text"
-                    value={time}
-                    onChange={(event) => { setElementTime(event.target.value) }}
-                />
-                <div>
-                    <button onClick={(click) => { updateMedication(click, medi.id); }} >
-                        <span className="material-icons-round"> update </span>
-                    </button>
-                    <button onClick={() => { setEditActive(false); }} className="modal-close" >
-                        <span className="material-icons-round"> close </span>
-                    </button>
-                </div>
-            </div> */}
 
             {
                 editActive === true &&
