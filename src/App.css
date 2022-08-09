@@ -302,9 +302,9 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  position: absolute;
-  top: 10%;
-  left: 5%;
+  position: fixed;
+  top: 15vh;
+  left: 3vw;
 }
 .modal input {
   height: 20px;
