@@ -53,21 +53,12 @@ const UserSettingsElement = ({ settings }) => {
 
 
     return (
-        <div key={settings.id} >
-
-
-            {/* <div> */}
+        <div key={settings.id} className="medi-values" >
             <p className="medi-title">{settings.title} - {/* {settings.id} */} {settings.dose} {settings.unit}</p>
-            {/* </div > */}
 
-            <div className="list-element-btn-box">
-
-                <button onClick={() => selectMedi()} >
-                    <span className="material-icons-round">settings</span>
-                </button>
-            </div>
-
-
+            <button onClick={() => selectMedi()} >
+                <span className="material-icons-round">settings</span>
+            </button>
 
             {
                 editActive === true &&

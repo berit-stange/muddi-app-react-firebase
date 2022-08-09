@@ -127,7 +127,7 @@ const UserSettings = () => {
                     .sort((a, b) => a.title < b.title ? -1 : 1)
                     .map((settings) => {
                         return (
-                            <div key={settings.id} className="medi-values" /* className="medi-list" */>
+                            <div key={settings.id}  >
                                 <UserSettingsElement
                                     settings={settings}
                                 />
