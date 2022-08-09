@@ -84,6 +84,7 @@ const MedicationList = () => {
 
             <h2>Einnahme dokumentieren</h2>
             {settings
+                .sort((a, b) => b.dose < a.dose ? -1 : 1)
                 .sort((a, b) => a.title < b.title ? -1 : 1)
                 .map((settings) => {
                     return (
