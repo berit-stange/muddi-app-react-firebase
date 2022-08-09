@@ -20,7 +20,6 @@ const UserSettingsElement = ({ settings }) => {
 
     const selectMedi = () => {
         setEditActive(true);
-        // setElementId(settings.id);
         setElementTitle(settings.title);
         setElementDose(settings.dose);
         setElementUnit(settings.unit);
@@ -46,7 +45,7 @@ const UserSettingsElement = ({ settings }) => {
 
     return (
         <div className="medi-values" >
-            <p className="medi-title">{settings.title} {/* {settings.id} */} {settings.dose} {settings.unit}</p>
+            <p className="medi-title">{settings.title} - {settings.dose} {settings.unit}</p>
 
             <button onClick={() => selectMedi()} >
                 <span className="material-icons-round">settings</span>
