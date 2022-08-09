@@ -2,6 +2,8 @@ import React from 'react';
 import { useState, useEffect, useRef } from "react";
 import { auth } from './firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import UserSettingsModal from './UserSettingsModal';
+import UserSettingsElement from './UserSettingsElement';
 
 import { db } from "./firebase-config";
 
@@ -9,6 +11,7 @@ import {
     addDoc,
     collection,
     deleteDoc,
+    updateDoc,
     doc,
     getDocs,
     onSnapshot,
@@ -25,7 +28,10 @@ const UserSettings = () => {
     const [title, setElementTitle] = useState("");
     const [unit, setElementUnit] = useState("");
     const [dose, setElementDose] = useState("");
+    const [id, setElementId] = useState("");
     const settingsCollectionRef = useRef(collection(db, "settings"));
+
+    const [editActive, setEditActive] = useState("false");
 
     const addElement = async (e) => {
         e.preventDefault();
@@ -40,10 +46,32 @@ const UserSettings = () => {
         setElementDose("");
     };
 
-    const deleteSettings = async (id) => {
-        const settingsDoc = doc(db, "settings", id);
-        await deleteDoc(settingsDoc);
+    const selectMedi = () => {
+        setEditActive(true);
+        setElementId(settings.id);
+        setElementTitle(settings.title);
+        setElementDose(settings.dose);
+        setElementUnit(settings.unit);
+        console.log("selectMedi: " + settings.title);
     };
+
+    // const updateSettings = async (click, id) => {
+    //     click.preventDefault();
+    //     const settingsDoc = doc(db, "settings", id);
+    //     await updateDoc(settingsDoc, {
+    //         title: title,
+    //         unit: unit,
+    //         dose: dose
+    //     });
+    //     // setElementTitle();
+    //     // setElementTime();
+    //     setEditActive(false);
+    // };
+
+    // const deleteSettings = async (id) => {
+    //     const settingsDoc = doc(db, "settings", id);
+    //     await deleteDoc(settingsDoc);
+    // };
 
     useEffect(() => {
         const q = query(settingsCollectionRef.current, where("uid", "==", user.uid));
@@ -99,20 +127,10 @@ const UserSettings = () => {
                     .sort((a, b) => a.title < b.title ? -1 : 1)
                     .map((settings) => {
                         return (
-                            <div className="medi-values" key={settings.id}>
-                                <p className="medi-title">{settings.title} - {settings.dose} {settings.unit} </p>
-
-                                <div className="btn-box btn-med-delete">
-                                    <button>
-                                        <span className="material-icons-round">settings</span>
-                                    </button>
-                                    <button onClick={() => { deleteSettings(settings.id); }} >
-                                        <span className="material-icons-round">
-                                            delete
-                                        </span>
-                                    </button>
-
-                                </div>
+                            <div key={settings.id} className="medi-values" /* className="medi-list" */>
+                                <UserSettingsElement
+                                    settings={settings}
+                                />
                             </div>
                         );
                     })

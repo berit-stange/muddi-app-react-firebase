@@ -1,19 +1,16 @@
 import React from 'react';
 
-const MedicationModal = ({
-    medi,
+const UserSettingsModal = ({
+    settings,
     setEditActive,
     setElementTitle,
     title,
-    setElementTime,
-    time,
-    //  id, 
-    // setElementId, 
-    unit, setElementUnit,
+    unit,
+    setElementUnit,
     dose,
     setElementDose,
-    updateMedication,
-    deleteMedication
+    updateSettings,
+    deleteSettings
 }) => {
 
     return (
@@ -36,11 +33,6 @@ const MedicationModal = ({
             />
             <input
                 type="text"
-                value={time}
-                onChange={(event) => { setElementTime(event.target.value) }}
-            />
-            <input
-                type="text"
                 value={dose}
                 onChange={(event) => { setElementDose(event.target.value) }}
             />
@@ -52,14 +44,14 @@ const MedicationModal = ({
 
             <div className="modal-btn-box">
                 <div>
-                    <button onClick={() => { deleteMedication(medi.id); }} >
+                    <button onClick={() => { deleteSettings(settings.id); }} >
                         <span className="material-icons-round">
                             delete
                         </span>
                     </button>
                 </div>
                 <div>
-                    <button onClick={(click) => { updateMedication(click, medi.id); }}>
+                    <button onClick={(click) => { updateSettings(click, settings.id); }} >
                         <span className="material-icons-round">
                             update
                         </span>
@@ -73,4 +65,4 @@ const MedicationModal = ({
     );
 }
 
-export default MedicationModal;
+export default UserSettingsModal;
