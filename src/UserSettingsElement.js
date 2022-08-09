@@ -61,11 +61,6 @@ const UserSettingsElement = ({ settings }) => {
             {/* </div > */}
 
             <div className="list-element-btn-box">
-                {/* <button onClick={() => { deleteMedication(medi.id); }} >
-                    <span className="material-icons-round">
-                        delete
-                    </span>
-                </button> */}
 
                 <button onClick={() => selectMedi()} >
                     <span className="material-icons-round">settings</span>
