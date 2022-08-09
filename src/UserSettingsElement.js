@@ -13,24 +13,18 @@ const UserSettingsElement = ({ settings }) => {
 
     const [editActive, setEditActive] = useState("false");
     const [id, setElementId] = useState("");
-    const [time, setElementTime] = useState("");
     const [title, setElementTitle] = useState("");
     const [unit, setElementUnit] = useState("");
     const [dose, setElementDose] = useState("");
 
-    // const deleteMedication = async (id) => {
-    //     const medicationDoc = doc(db, "medication", id);
-    //     await deleteDoc(medicationDoc);
-    // };
 
     const selectMedi = () => {
         setEditActive(true);
-        setElementId(settings.id);
+        // setElementId(settings.id);
         setElementTitle(settings.title);
-        // setElementTime(settings.time);
         setElementDose(settings.dose);
         setElementUnit(settings.unit);
-        // console.log("selectMedi: " + medi.title + " --- " + id);
+        console.log("selectMedi: " + settings.title);
     }
 
     const updateSettings = async (click, id) => {
@@ -42,8 +36,6 @@ const UserSettingsElement = ({ settings }) => {
             dose: dose
         });
         setEditActive(false);
-        setElementTitle("");
-        // setElementTime("");
     };
 
     const deleteSettings = async (id) => {
@@ -53,8 +45,8 @@ const UserSettingsElement = ({ settings }) => {
 
 
     return (
-        <div key={settings.id} className="medi-values" >
-            <p className="medi-title">{settings.title} - {/* {settings.id} */} {settings.dose} {settings.unit}</p>
+        <div className="medi-values" >
+            <p className="medi-title">{settings.title} {/* {settings.id} */} {settings.dose} {settings.unit}</p>
 
             <button onClick={() => selectMedi()} >
                 <span className="material-icons-round">settings</span>

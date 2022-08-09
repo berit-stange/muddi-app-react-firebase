@@ -2,7 +2,6 @@ import React from 'react';
 import { useState, useEffect, useRef } from "react";
 import { auth } from './firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import UserSettingsModal from './UserSettingsModal';
 import UserSettingsElement from './UserSettingsElement';
 
 import { db } from "./firebase-config";
@@ -10,9 +9,6 @@ import { db } from "./firebase-config";
 import {
     addDoc,
     collection,
-    deleteDoc,
-    updateDoc,
-    doc,
     getDocs,
     onSnapshot,
     query,
@@ -28,10 +24,7 @@ const UserSettings = () => {
     const [title, setElementTitle] = useState("");
     const [unit, setElementUnit] = useState("");
     const [dose, setElementDose] = useState("");
-    const [id, setElementId] = useState("");
     const settingsCollectionRef = useRef(collection(db, "settings"));
-
-    const [editActive, setEditActive] = useState("false");
 
     const addElement = async (e) => {
         e.preventDefault();
@@ -45,33 +38,6 @@ const UserSettings = () => {
         setElementUnit("");
         setElementDose("");
     };
-
-    const selectMedi = () => {
-        setEditActive(true);
-        setElementId(settings.id);
-        setElementTitle(settings.title);
-        setElementDose(settings.dose);
-        setElementUnit(settings.unit);
-        console.log("selectMedi: " + settings.title);
-    };
-
-    // const updateSettings = async (click, id) => {
-    //     click.preventDefault();
-    //     const settingsDoc = doc(db, "settings", id);
-    //     await updateDoc(settingsDoc, {
-    //         title: title,
-    //         unit: unit,
-    //         dose: dose
-    //     });
-    //     // setElementTitle();
-    //     // setElementTime();
-    //     setEditActive(false);
-    // };
-
-    // const deleteSettings = async (id) => {
-    //     const settingsDoc = doc(db, "settings", id);
-    //     await deleteDoc(settingsDoc);
-    // };
 
     useEffect(() => {
         const q = query(settingsCollectionRef.current, where("uid", "==", user.uid));
@@ -91,7 +57,7 @@ const UserSettings = () => {
                 <h2>Element hinzufügen</h2>
                 <div className="blood-pressure-comment">
                     <input
-                        placeholder="..."
+                        placeholder="Titel"
                         value={title}
                         onChange={(event) => {
                             setElementTitle(event.target.value);
@@ -124,6 +90,7 @@ const UserSettings = () => {
             <div className="medi-list">
                 <h2>Medikamente bearbeiten</h2>
                 {settings
+                    .sort((a, b) => b.dose < a.dose ? -1 : 1)
                     .sort((a, b) => a.title < b.title ? -1 : 1)
                     .map((settings) => {
                         return (
