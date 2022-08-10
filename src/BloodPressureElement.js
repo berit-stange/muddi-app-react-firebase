@@ -50,25 +50,16 @@ const BloodPressureElement = ({ bloodPressure }) => {
 
     return (
         <div key={bloodPressure.id} className="medi-list-item">
-
             <div>
                 <p>{bloodPressure.time.toString()}</p>
                 <p>{bloodPressure.value1} / {bloodPressure.value2}</p>
             </div>
 
             <div className="list-element-btn-box">
-                {/* <button onClick={() => { deleteMedication(medi.id); }} >
-                    <span className="material-icons-round">
-                        delete
-                    </span>
-                </button> */}
-
                 <button onClick={() => selectBloodPressure()} >
                     <span className="material-icons-round">settings</span>
                 </button>
             </div>
-
-
 
             {
                 editActive === true &&
