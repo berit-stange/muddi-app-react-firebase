@@ -1,8 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navigation from './Navigation';
-// import MainPage from './MainPage';
-// import DayView from './DayView';
 import MedicationList from './MedicationList';
 import BloodPressureContainer from './BloodPressureContainer';
 import UserSettings from './UserSettings';
@@ -13,7 +11,6 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import GoogleLogin from './GoogleLogin';
 
 
-// import { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
