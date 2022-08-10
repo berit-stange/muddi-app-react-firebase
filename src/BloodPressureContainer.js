@@ -3,6 +3,7 @@ import { auth } from './firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useState, useEffect, useRef } from "react";
 import { db } from "./firebase-config";
+import BloodPressureElement from './BloodPressureElement';
 
 import {
     collection,
@@ -44,10 +45,10 @@ const BloodPressureContainer = () => {
     };
 
 
-    const deleteBloodPressure = async (id) => {
-        const bloodPressureDoc = doc(db, "bloodPressure", id);
-        await deleteDoc(bloodPressureDoc);
-    };
+    // const deleteBloodPressure = async (id) => {
+    //     const bloodPressureDoc = doc(db, "bloodPressure", id);
+    //     await deleteDoc(bloodPressureDoc);
+    // };
 
 
     useEffect(() => {
@@ -102,19 +103,25 @@ const BloodPressureContainer = () => {
                     .sort((a, b) => a.timestamp > b.timestamp ? -1 : 1)
                     .map((bloodPressure) => {
                         return (
-                            <div className="blood-pressure-list-item" key={bloodPressure.id}>
-                                <div>
-                                    <p>{bloodPressure.time.toString()}</p>
-                                    <p>{bloodPressure.value1} / {bloodPressure.value2}</p>
-                                    <p>{bloodPressure.comment}</p>
-                                </div>
-                                <div className="btn-box">
-                                    <button className="" onClick={() => { deleteBloodPressure(bloodPressure.id); }} >
-                                        <span className="material-icons-round">
-                                            delete
-                                        </span>
-                                    </button>
-                                </div>
+                            // <div className="blood-pressure-list-item" key={bloodPressure.id}>
+                            //     <div>
+                            //         <p>{bloodPressure.time.toString()}</p>
+                            //         <p>{bloodPressure.value1} / {bloodPressure.value2}</p>
+                            //         <p>{bloodPressure.comment}</p>
+                            //     </div>
+                            //     <div className="btn-box">
+                            //         <button className="" onClick={() => { deleteBloodPressure(bloodPressure.id); }} >
+                            //             <span className="material-icons-round">
+                            //                 delete
+                            //             </span>
+                            //         </button>
+                            //     </div>
+                            // </div>
+
+                            <div key={bloodPressure.id}  >
+                                <BloodPressureElement
+                                    bloodPressure={bloodPressure}
+                                />
                             </div>
                         );
                     })
