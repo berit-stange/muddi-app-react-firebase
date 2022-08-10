@@ -1,9 +1,7 @@
 import React from 'react';
 import { auth } from './firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
-
 import { useState, useEffect, useRef } from "react";
-
 import { db } from "./firebase-config";
 
 import {
