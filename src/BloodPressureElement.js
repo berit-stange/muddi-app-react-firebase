@@ -52,7 +52,8 @@ const BloodPressureElement = ({ bloodPressure }) => {
         <div key={bloodPressure.id} className="medi-list-item">
 
             <div>
-                <p>{bloodPressure.time.toString()} - {bloodPressure.title} - {/* {bloodPressure.id} */} {bloodPressure.dose} {bloodPressure.unit}</p>
+                <p>{bloodPressure.time.toString()}</p>
+                <p>{bloodPressure.value1} / {bloodPressure.value2}</p>
             </div>
 
             <div className="list-element-btn-box">
