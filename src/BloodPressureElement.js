@@ -12,11 +12,10 @@ import BloodPressureModal from './BloodPressureModal';
 const BloodPressureElement = ({ bloodPressure }) => {
 
     const [editActive, setEditActive] = useState("false");
-    const [id, setElementId] = useState("");
-    const [time, setElementTime] = useState("");
-    const [title, setElementTitle] = useState("");
-    const [unit, setElementUnit] = useState("");
-    const [dose, setElementDose] = useState("");
+    const [value1, setBloodPressureValue1] = useState("");
+    const [value2, setBloodPressureValue2] = useState("");
+    const [comment, setBloodPressureComment] = useState("");
+    const [time, setBloodPressureTime] = useState("");
 
     const deleteBloodPressure = async (id) => {
         const bloodPressureDoc = doc(db, "bloodPressure", id);
@@ -25,12 +24,11 @@ const BloodPressureElement = ({ bloodPressure }) => {
 
     const selectBloodPressure = () => {
         setEditActive(true);
-        setElementId(bloodPressure.id);
-        setElementTitle(bloodPressure.title);
-        setElementTime(bloodPressure.time);
-        setElementDose(bloodPressure.dose);
-        setElementUnit(bloodPressure.unit);
-        console.log("selectMedi: " + bloodPressure.title);
+        setBloodPressureValue1(bloodPressure.value1);
+        setBloodPressureValue2(bloodPressure.value2);
+        setBloodPressureComment(bloodPressure.comment);
+        setBloodPressureTime(bloodPressure.time);
+        console.log("selectMedi: " + bloodPressure.value1);
     }
 
     const updateBloodPressure = async (click, id) => {
@@ -38,13 +36,13 @@ const BloodPressureElement = ({ bloodPressure }) => {
         const bloodPressureDoc = doc(db, "bloodPressure", id);
         await updateDoc(bloodPressureDoc, {
             time: time,
-            title: title,
-            dose: dose,
-            unit: unit
+            value2: value2,
+            value1: value1,
+            comment: comment
         });
         setEditActive(false);
-        setElementTitle("");
-        setElementId("");
+        setBloodPressureValue1("");
+        // setElementsetBloodPressureValue2("");
     };
 
 
@@ -66,16 +64,14 @@ const BloodPressureElement = ({ bloodPressure }) => {
                 <BloodPressureModal
                     bloodPressure={bloodPressure}
                     setEditActive={setEditActive}
-                    setElementTitle={setElementTitle}
-                    title={title}
-                    setElementTime={setElementTime}
+                    setBloodPressureValue1={setBloodPressureValue1}
+                    value1={value1}
+                    setBloodPressureValue2={setBloodPressureValue2}
+                    value2={value2}
+                    setBloodPressureComment={setBloodPressureComment}
+                    comment={comment}
+                    setBloodPressureTime={setBloodPressureTime}
                     time={time}
-                    setElementId={setElementId}
-                    id={id}
-                    setElementDose={setElementDose}
-                    dose={dose}
-                    setElementUnit={setElementUnit}
-                    unit={unit}
                     updateBloodPressure={updateBloodPressure}
                     deleteBloodPressure={deleteBloodPressure}
                 />
