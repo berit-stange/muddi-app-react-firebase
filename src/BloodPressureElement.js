@@ -51,6 +51,7 @@ const BloodPressureElement = ({ bloodPressure }) => {
             <div>
                 <p>{bloodPressure.time.toString()}</p>
                 <p>{bloodPressure.value1} / {bloodPressure.value2}</p>
+                <p>{bloodPressure.comment}</p>
             </div>
 
             <div className="list-element-btn-box">
