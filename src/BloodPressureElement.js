@@ -41,8 +41,6 @@ const BloodPressureElement = ({ bloodPressure }) => {
             comment: comment
         });
         setEditActive(false);
-        setBloodPressureValue1("");
-        // setElementsetBloodPressureValue2("");
     };
 
 
