@@ -31,7 +31,6 @@ const BloodPressureInput = () => {
     const bloodPressureCollectionRef = collection(db, "bloodPressure");
 
 
-
     const addBloodPressure = async () => {
         const date = new Date().toLocaleDateString('de-DE', { year: "numeric", month: "numeric", day: "numeric", hour: "numeric", minute: "numeric" });
         await addDoc(bloodPressureCollectionRef, {
@@ -43,26 +42,6 @@ const BloodPressureInput = () => {
             uid: user.uid
         });
     };
-
-
-    // useEffect(() => {
-    //     const getBloodPressure = async () => {
-    //         const q = query(bloodPressureCollectionRef, where("uid", "==", user.uid));
-    //         const querySnapshot = await getDocs(q);
-    //         setBloodPressure(querySnapshot.docs
-    //             .map((doc) => ({ ...doc.data(), id: doc.id }))
-    //         );
-    //     };
-    //     getBloodPressure();
-    // }, [
-    //     user,
-    //     bloodPressureCollectionRef
-    // ]);
-
-
-
-
-
 
 
     return (
