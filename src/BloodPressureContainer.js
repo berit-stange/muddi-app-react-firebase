@@ -9,8 +9,6 @@ import {
     collection,
     getDocs,
     addDoc,
-    deleteDoc,
-    doc,
     onSnapshot,
     query,
     where
