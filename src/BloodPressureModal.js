@@ -3,16 +3,14 @@ import React from 'react';
 const BloodPressureModal = ({
     bloodPressure,
     setEditActive,
-    setElementTitle,
-    title,
-    setElementTime,
+    setBloodPressureValue1,
+    value1,
+    setBloodPressureValue2,
+    value2,
+    comment,
+    setBloodPressureComment,
     time,
-    //  id, 
-    // setElementId, 
-    unit,
-    setElementUnit,
-    dose,
-    setElementDose,
+    setBloodPressureTime,
     updateBloodPressure,
     deleteBloodPressure
 }) => {
@@ -32,23 +30,23 @@ const BloodPressureModal = ({
 
             <input
                 type="text"
-                value={title}
-                onChange={(event) => { setElementTitle(event.target.value) }}
+                value={value1}
+                onChange={(event) => { setBloodPressureValue1(event.target.value) }}
+            />
+            <input
+                type="text"
+                value={value2}
+                onChange={(event) => { setBloodPressureValue2(event.target.value) }}
+            />
+            <input
+                type="text"
+                value={comment}
+                onChange={(event) => { setBloodPressureComment(event.target.value) }}
             />
             <input
                 type="text"
                 value={time}
-                onChange={(event) => { setElementTime(event.target.value) }}
-            />
-            <input
-                type="text"
-                value={dose}
-                onChange={(event) => { setElementDose(event.target.value) }}
-            />
-            <input
-                type="text"
-                value={unit}
-                onChange={(event) => { setElementUnit(event.target.value) }}
+                onChange={(event) => { setBloodPressureTime(event.target.value) }}
             />
 
             <div className="modal-btn-box">
